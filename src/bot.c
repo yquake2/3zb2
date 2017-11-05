@@ -7,19 +7,19 @@ void droptofloor (edict_t *ent);
 edict_t *bot_team_flag1;
 edict_t *bot_team_flag2;
 
-void SetBotFlag1(edict_t *ent)	//ƒ`[ƒ€1‚ÌŠø
+void SetBotFlag1(edict_t *ent)	//ãƒãƒ¼ãƒ 1ã®æ——
 {
 	bot_team_flag1 = ent;
 }
-void SetBotFlag2(edict_t *ent)  //ƒ`[ƒ€2‚ÌŠø
+void SetBotFlag2(edict_t *ent)  //ãƒãƒ¼ãƒ 2ã®æ——
 {
 	bot_team_flag2 = ent;
 }
-edict_t *GetBotFlag1()	//ƒ`[ƒ€1‚ÌŠø
+edict_t *GetBotFlag1()	//ãƒãƒ¼ãƒ 1ã®æ——
 {
 	return bot_team_flag1;
 }
-edict_t *GetBotFlag2()  //ƒ`[ƒ€2‚ÌŠø
+edict_t *GetBotFlag2()  //ãƒãƒ¼ãƒ 2ã®æ——
 {
 	return bot_team_flag2;
 }
@@ -51,7 +51,7 @@ void SpawnItem2 (edict_t *ent, gitem_t *item)
 //=====================================
 
 //
-// BOT—p‰Â‹”»’è
+// BOTç”¨å¯è¦–åˆ¤å®š
 //
 
 qboolean Bot_trace (edict_t *ent,edict_t *other)
@@ -140,7 +140,7 @@ qboolean Bot_traceY (edict_t *ent,edict_t *other)
 }
 
 //
-// BOT—p‰Â‹”»’è 2
+// BOTç”¨å¯è¦–åˆ¤å®š 2
 //
 
 qboolean Bot_trace2 (edict_t *ent,vec3_t ttz)
@@ -157,7 +157,7 @@ qboolean Bot_trace2 (edict_t *ent,vec3_t ttz)
 }
 
 //
-// BOT—p‰Â‹”»’è 3
+// BOTç”¨å¯è¦–åˆ¤å®š 3
 //
 
 qboolean Bot_traceS (edict_t *ent,edict_t *other)
@@ -225,7 +225,7 @@ WATERMODE:
 
 
 //
-// VEC’l‚©‚çyaw‚ğ“¾‚é
+// VECå€¤ã‹ã‚‰yawã‚’å¾—ã‚‹
 //
 
 float Get_yaw (vec3_t vec)
@@ -266,7 +266,7 @@ float Get_pitch (vec3_t vec)
 }
 
 //
-// VEC’l‚Æyaw’l‚ÌŠp“x·‚ğ“¾‚é
+// VECå€¤ã¨yawå€¤ã®è§’åº¦å·®ã‚’å¾—ã‚‹
 //
 
 float Get_vec_yaw (vec3_t vec,float yaw)
@@ -283,7 +283,7 @@ float Get_vec_yaw (vec3_t vec,float yaw)
 		return vecsyaw;
 }
 
-//yaw ‚É‘Î‚·‚évec‚Ì‘Š‘Î
+//yaw ã«å¯¾ã™ã‚‹vecã®ç›¸å¯¾
 float Get_vec_yaw2 (vec3_t vec,float yaw)
 {
 		float		vecsyaw;

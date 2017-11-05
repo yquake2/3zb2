@@ -956,7 +956,7 @@ void Cmd_Say_f (edict_t *ent, qboolean team, qboolean arg0)
 		gi.cprintf(other, PRINT_CHAT, "%s", text);
 	}
 }
-//スナイパー用ZoomIn Out
+//繧ｹ繝翫う繝代�ｼ逕ｨZoomIn Out
 void Cmd_ZoomIn(edict_t *ent)
 {
 	if( ent->client->zc.autozoom )
@@ -1026,7 +1026,7 @@ void Cmd_AutoZoom(edict_t *ent)
 	}
 }
 
-//chain の undo
+//chain 縺ｮ undo
 void UndoChain(edict_t *ent ,int step)
 {
 	int	count,i;

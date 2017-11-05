@@ -392,22 +392,22 @@ typedef struct
 	// fixed data
 	vec3_t		start_origin;
 	vec3_t		start_angles;
-	vec3_t		end_origin;			//BFG�̃^�[�Q�b�g�|�C���g�ɕs���g�p
+	vec3_t		end_origin;			//BFGのターゲットポイントに不正使用
 	vec3_t		end_angles;
 
-	int			sound_start;		//�X�i�C�p�[�̃A�N�e�B�x�[�g�t���O
+	int			sound_start;		//スナイパーのアクティベートフラグ
 	int			sound_middle;
-	int			sound_end;			//hokuto�̃N���X
+	int			sound_end;			//hokutoのクラス
 
 	float		accel;
-	float		speed;				//bot �������̈ړ��ʂɕs���g�p
-	float		decel;				//���ʑ؍ݎ��Ԃɕs���g�p
-	float		distance;			//�X�i�C�p�[�pFOV�l
+	float		speed;				//bot 落下時の移動量に不正使用
+	float		decel;				//水面滞在時間に不正使用
+	float		distance;			//スナイパー用FOV値
 
 	float		wait;
 
 	// state data
-	int			state;				//CTF�X�e�[�^�X�ɕs���g�p
+	int			state;				//CTFステータスに不正使用
 	vec3_t		dir;
 	float		current_speed;
 	float		move_speed;
@@ -928,14 +928,14 @@ typedef struct zgcl_s
 {
 	int			zclass;			//class no.
 
-// true client�p zoom �t���O	
+// true client用 zoom フラグ	
 	int			aiming;			//0-not 1-aiming  2-firing zoomingflag
-	float		distance;		//zoom����FOV�l
-	float		olddistance;	//��zooming FOV�l
+	float		distance;		//zoom中のFOV値
+	float		olddistance;	//旧zooming FOV値
 	qboolean	autozoom;		//autozoom
 	qboolean	lockon;			//lockon flag false-not true-locking
 
-// bot�p	
+// bot用	
 	int			zcstate;		//status
 
 	int			botskill;		//skill

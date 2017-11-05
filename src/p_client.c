@@ -571,7 +571,7 @@ void player_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int damag
 		if(ctf->value) CTFFragBonuses(self, inflictor, attacker);
 //ZOID
 
-		//ŠøŽ‚Á‚Ä‚éê‡‚Í—Ž‚Æ‚·
+		//æ——æŒã£ã¦ã‚‹å ´åˆã¯è½ã¨ã™
 		if(self->client->pers.inventory[ITEM_INDEX(zflag_item)])
 			zflag_item->drop(self,zflag_item);
 
@@ -1061,7 +1061,7 @@ void CopyToBodyQue (edict_t *ent)
 	body->s = ent->s;
 	body->s.number = body - g_edicts;
 
-	//‹­ˆø‚ÉƒtƒŒ[ƒ€ƒZƒbƒg
+	//å¼·å¼•ã«ãƒ•ãƒ¬ãƒ¼ãƒ ã‚»ãƒƒãƒˆ
 	if(body->s.modelindex == skullindex || body->s.modelindex == headindex) body->s.frame = 0;
 
 	body->svflags = ent->svflags;

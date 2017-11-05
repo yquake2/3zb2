@@ -3,9 +3,9 @@
 #include "m_player.h"
 
 //======================================================================
-//aimŒˆ’è
+//aimæ±ºå®š
 //ent	entity
-//aim	aimƒXƒLƒ‹
+//aim	aimã‚¹ã‚­ãƒ«
 //yaw	dist
 //wep	weapon
 void Get_AimAngle(edict_t *ent,float aim,float dist,int weapon)
@@ -18,7 +18,7 @@ void Get_AimAngle(edict_t *ent,float aim,float dist,int weapon)
 
 	switch(weapon)
 	{
-		//‘¦”»’è
+		//å³åˆ¤å®š
 		case WEAP_SHOTGUN:
 		case WEAP_SUPERSHOTGUN:
 		case WEAP_RAILGUN:
@@ -207,7 +207,7 @@ void Get_AimAngle(edict_t *ent,float aim,float dist,int weapon)
 
 
 //======================================================================
-//•Šíg—p‰Â”\H
+//æ­¦å™¨ä½¿ç”¨å¯èƒ½ï¼Ÿ
 int CanUsewep(edict_t *ent,int weapon)
 {
 	gitem_t *item;
@@ -483,13 +483,13 @@ qboolean B_UseBfg(edict_t *ent,edict_t *target,int enewep,float aim,float distan
 			if(k /*&& random() < 0.8*/)
 			{
 				client->buttons |= BUTTON_ATTACK;
-				zc->battlemode |= FIRE_STAYFIRE;			//ƒ‚[ƒh‘JˆÚ
+				zc->battlemode |= FIRE_STAYFIRE;			//ãƒ¢ãƒ¼ãƒ‰é·ç§»
 				zc->battlecount = 8 + (int)(10 * random());
 				trace_priority = TRP_ALLKEEP;
 				return true;
 			}
 		}
-		//”š”­‰ñ”ğ
+		//çˆ†ç™ºå›é¿
 		else if((FFlg[skill] & FIRE_EXPAVOID)
 		&& distance < 300 /*&& random() < 0.5 */
 		&& Bot_traceS(ent,target))
@@ -502,7 +502,7 @@ qboolean B_UseBfg(edict_t *ent,edict_t *target,int enewep,float aim,float distan
 				return true;
 			}
 		}
-		//•’Ê
+		//æ™®é€š
 		else if(!(FFlg[skill] &(FIRE_STAYFIRE | FIRE_EXPAVOID)))
 		{
 			if(k /*&& random() < 0.8*/)
@@ -1009,10 +1009,10 @@ void Combat_LevelX(edict_t *ent,int foundedenemy,int enewep
 	target = zc->first_target;
 
 	//-----------------------------------------------------------------------
-	//ƒXƒe[ƒ^ƒX‚ğ”½‰f
+	//ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’åæ˜ 
 	//-----------------------------------------------------------------------
 	k = false;
-	//—\‘ª========================
+	//äºˆæ¸¬========================
 	if(zc->battlemode & FIRE_ESTIMATE)
 	{
 		mywep = Get_KindWeapon(client->pers.weapon);
@@ -1077,11 +1077,11 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 
 
 	//-----------------------------------------------------------------------
-	//ƒXƒe[ƒ^ƒX‚ğ”½‰f
+	//ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’åæ˜ 
 	//-----------------------------------------------------------------------
-	//ƒ`ƒLƒ“‚Í‘_‚¢‚ªƒLƒcƒC==============
+	//ãƒã‚­ãƒ³ã¯ç‹™ã„ãŒã‚­ãƒ„ã‚¤==============
 	if(zc->battlemode == FIRE_CHIKEN) aim *= 0.7;
-	//¶‰E‚É‰ñ”ğ========================
+	//å·¦å³ã«å›é¿========================
 	if(zc->battlemode & FIRE_SHIFT)
 	{
 		mywep = Get_KindWeapon(client->pers.weapon);
@@ -1101,7 +1101,7 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 					zc->moveyaw = ent->s.angles[YAW] - 90;
 					if(zc->moveyaw < -180) zc->moveyaw += 360;
 				}
-				trace_priority = TRP_MOVEKEEP;	//Œã‘Şˆ—
+				trace_priority = TRP_MOVEKEEP;	//å¾Œé€€å‡¦ç†
 			}
 		}
 		else
@@ -1150,7 +1150,7 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 			}
 		}
 	}
-	//–³‹‚µ‚Ä‘–‚é========================
+	//ç„¡è¦–ã—ã¦èµ°ã‚‹========================
 	if(zc->battlemode & FIRE_IGNORE)
 	{
 		if(--zc->battlecount > 0)
@@ -1164,7 +1164,7 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 		zc->battlemode = 0;
 	}
 
-	//—§‚¿~‚Ü‚Á‚ÄŒ‚‚Â€”õ========================
+	//ç«‹ã¡æ­¢ã¾ã£ã¦æ’ƒã¤æº–å‚™========================
 	if(zc->battlemode & FIRE_PRESTAYFIRE)
 	{
 		if(--zc->battlecount > 0)
@@ -1172,14 +1172,14 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 			mywep = Get_KindWeapon(client->pers.weapon);
 			Get_AimAngle(ent,aim,distance,mywep);
 			if(target->client->weaponstate == WEAPON_FIRING && ent->groundentity) ent->client->ps.pmove.pm_flags |= PMF_DUCKED;
-			trace_priority = TRP_ALLKEEP;	//“®‚©‚È‚¢
+			trace_priority = TRP_ALLKEEP;	//å‹•ã‹ãªã„
 			return;
 		}
-		if(!(zc->battlemode & FIRE_SHIFT)) zc->battlemode = FIRE_STAYFIRE;			//ƒ‚[ƒh‘JˆÚ
+		if(!(zc->battlemode & FIRE_SHIFT)) zc->battlemode = FIRE_STAYFIRE;			//ãƒ¢ãƒ¼ãƒ‰é·ç§»
 		zc->battlecount = 5 + (int)(20 * random());
 	}
 
-	//—§‚¿~‚Ü‚Á‚ÄŒ‚‚Â========================
+	//ç«‹ã¡æ­¢ã¾ã£ã¦æ’ƒã¤========================
 	if(zc->battlemode & FIRE_STAYFIRE)
 	{
 		if(--zc->battlecount > 0)
@@ -1196,7 +1196,7 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 				}
 				else client->ps.pmove.pm_flags |= PMF_DUCKED;
 			}
-			if(!(zc->battlemode & FIRE_SHIFT)) trace_priority = TRP_ALLKEEP;	//“®‚©‚È‚¢
+			if(!(zc->battlemode & FIRE_SHIFT)) trace_priority = TRP_ALLKEEP;	//å‹•ã‹ãªã„
 			if(Bot_traceS(ent,target) 
 				|| mywep == WEAP_BFG 
 				|| mywep == WEAP_GRENADELAUNCHER) client->buttons |= BUTTON_ATTACK;
@@ -1205,7 +1205,7 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 		zc->battlemode = 0;
 	}
 
-	//FIRE_RUSH	‚Â‚Á‚±‚Ş========================
+	//FIRE_RUSH	ã¤ã£ã“ã‚€========================
 	if(zc->battlemode & FIRE_RUSH)
 	{
 		if(--zc->battlecount > 0)
@@ -1222,7 +1222,7 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 				}
 				else client->ps.pmove.pm_flags |= PMF_DUCKED;
 			}
-			trace_priority = TRP_MOVEKEEP;	//Œã‘Şˆ—
+			trace_priority = TRP_MOVEKEEP;	//å¾Œé€€å‡¦ç†
 			zc->moveyaw = ent->s.angles[YAW];
 
 			if(Bot_traceS(ent,target)) client->buttons |= BUTTON_ATTACK;
@@ -1231,7 +1231,7 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 		zc->battlemode = 0;
 	}
 
-	//Œã‘Şƒtƒ@ƒCƒA(”š”­‰ñ”ğ)========================
+	//å¾Œé€€ãƒ•ã‚¡ã‚¤ã‚¢(çˆ†ç™ºå›é¿)========================
 	if(zc->battlemode & FIRE_EXPAVOID)
 	{
 		if(--zc->battlecount > 0)
@@ -1248,7 +1248,7 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 				}
 				else client->ps.pmove.pm_flags |= PMF_DUCKED;
 			}
-			trace_priority = TRP_MOVEKEEP;	//Œã‘Şˆ—
+			trace_priority = TRP_MOVEKEEP;	//å¾Œé€€å‡¦ç†
 			zc->moveyaw = ent->s.angles[YAW] + 180;
 			if(zc->moveyaw > 180) zc->moveyaw -= 360;
 
@@ -1259,7 +1259,7 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 		}
 		zc->battlemode = 0;
 	}
-	//‚a‚e‚fƒtƒ@ƒCƒA(”š”­‰ñ”ğ)========================
+	//ï¼¢ï¼¦ï¼§ãƒ•ã‚¡ã‚¤ã‚¢(çˆ†ç™ºå›é¿)========================
 	if(zc->battlemode & FIRE_BFG)
 	{
 		if(--zc->battlecount > 0)
@@ -1276,7 +1276,7 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 				}
 				else client->ps.pmove.pm_flags |= PMF_DUCKED;
 			}
-			trace_priority = TRP_ANGLEKEEP;	//Œã‘Şˆ—
+			trace_priority = TRP_ANGLEKEEP;	//å¾Œé€€å‡¦ç†
 
 			if(Bot_traceS(ent,target) 
 				|| mywep == WEAP_BFG 
@@ -1286,7 +1286,7 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 		zc->battlemode = 0;
 	}
 
-	//Œ‚‚Á‚Ä”ğ“ï========================
+	//æ’ƒã£ã¦é¿é›£========================
 	if(zc->battlemode & FIRE_REFUGE)
 	{
 		if(--zc->battlecount > 0)
@@ -1303,8 +1303,8 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 				}
 				else client->ps.pmove.pm_flags |= PMF_DUCKED;
 			}
-			trace_priority = TRP_ANGLEKEEP;	//“®‚©‚È‚¢
-//			trace_priority = TRP_ALLKEEP;	//“®‚©‚È‚¢
+			trace_priority = TRP_ANGLEKEEP;	//å‹•ã‹ãªã„
+//			trace_priority = TRP_ALLKEEP;	//å‹•ã‹ãªã„
 			if(Bot_traceS(ent,target) 
 				|| mywep == WEAP_BFG 
 				|| mywep == WEAP_GRENADELAUNCHER) client->buttons |= BUTTON_ATTACK;
@@ -1339,11 +1339,11 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 	}
 
 	//-----------------------------------------------------------------------
-	//“Áêƒtƒ@ƒCƒAƒŠƒ“ƒO
+	//ç‰¹æ®Šãƒ•ã‚¡ã‚¤ã‚¢ãƒªãƒ³ã‚°
 	//-----------------------------------------------------------------------
 	mywep = Get_KindWeapon(client->pers.weapon);
 
-	//¶‰E‰ñ”ğƒZƒbƒg========================
+	//å·¦å³å›é¿ã‚»ãƒƒãƒˆ========================
 	if(!(zc->battlemode & FIRE_SHIFT) && skill > (random() * skill) /*&& distance < 250*/
 		&& (30 * random()) < Bot[zc->botindex].param[BOP_OFFENCE])
 	{
@@ -1377,7 +1377,7 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 				f = -(f + 360);
 			}
 	
-			//‰´‚ğ‚İ‚Ä‚¢‚éII
+			//ä¿ºã‚’ã¿ã¦ã„ã‚‹ï¼ï¼
 			if(f <= -160)
 			{
 
@@ -1392,18 +1392,18 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 		}
 	}
 
-	//“G‚ªƒyƒ“ƒ^‚ğ‚Æ‚Á‚Ä‚¢‚é========================
+	//æ•µãŒãƒšãƒ³ã‚¿ã‚’ã¨ã£ã¦ã„ã‚‹========================
 	if((FFlg[skill] & FIRE_AVOIDINV)
 		&& target->client->invincible_framenum > level.framenum)
 	{
 //		mywep = Get_KindWeapon(client->pers.weapon);
 		Get_AimAngle(ent,aim,distance,mywep);
-		trace_priority = TRP_MOVEKEEP;	//Œã‘Şˆ—
+		trace_priority = TRP_MOVEKEEP;	//å¾Œé€€å‡¦ç†
 		zc->moveyaw = ent->s.angles[YAW] + 180;
 		if(zc->moveyaw > 180) zc->moveyaw -= 360;
 		return;
 	}
-	//Quad‚Ìˆ—=================================
+	//Quadæ™‚ã®å‡¦ç†=================================
 	if((FFlg[skill] & FIRE_QUADUSE) 
 		&& (ent->client->quad_framenum > level.framenum)
 		&& distance < 300)
@@ -1468,7 +1468,7 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 			return;
 		}
 	}
-	//Œ‚‚Á‚Ä“¦‚°‚éˆ—=================================
+	//æ’ƒã£ã¦é€ƒã’ã‚‹å‡¦ç†=================================
 	if((FFlg[skill] & FIRE_REFUGE)
 		&& zc->battlemode == 0 && zc->route_trace && zc->routeindex > 1 )
 	{
@@ -1485,17 +1485,17 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 			|| mywep == WEAP_ROCKETLAUNCHER
 			|| mywep == WEAP_PHALANX)
 			{
-				zc->battlemode |= FIRE_REFUGE;			//ƒ‚[ƒh‘JˆÚ
+				zc->battlemode |= FIRE_REFUGE;			//ãƒ¢ãƒ¼ãƒ‰é·ç§»
 				zc->battlecount = 8 + (int)(10 * random());
 				trace_priority = TRP_ALLKEEP;
 				return;
 			}
 		}
 	}
-	//ƒgƒŒ[ƒX’†ˆÈŠO‚Ì‚Æ‚«‚ÉƒOƒ‹ƒOƒ‹‚ğ–h‚®=================================
+	//ãƒˆãƒ¬ãƒ¼ã‚¹ä¸­ä»¥å¤–ã®ã¨ãã«ã‚°ãƒ«ã‚°ãƒ«ã‚’é˜²ã=================================
 	if(!zc->route_trace && distance < 100)
 	{
-		zc->battlemode |= FIRE_EXPAVOID;			//ƒ‚[ƒh‘JˆÚ
+		zc->battlemode |= FIRE_EXPAVOID;			//ãƒ¢ãƒ¼ãƒ‰é·ç§»
 		zc->battlecount = 4 + (int)(8 * random());
 		trace_priority = TRP_ALLKEEP;		
 	}
@@ -1503,7 +1503,7 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 
 	
 	//-----------------------------------------------------------------------
-	//ƒvƒ‰ƒCƒIƒŠƒeƒB
+	//ãƒ—ãƒ©ã‚¤ã‚ªãƒªãƒ†ã‚£
 	//-----------------------------------------------------------------------	
 	//BFG
 	if(distance > 200)
@@ -1624,7 +1624,7 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 
 	
 	//-----------------------------------------------------------------------
-	//’Êíƒtƒ@ƒCƒAƒŠƒ“ƒO
+	//é€šå¸¸ãƒ•ã‚¡ã‚¤ã‚¢ãƒªãƒ³ã‚°
 	//-----------------------------------------------------------------------
 	zc->secwep_selected = 0;
 	//BFG
@@ -1723,7 +1723,7 @@ void Combat_Level0(edict_t *ent,int foundedenemy,int enewep
 FIRED:
 	if(zc->secwep_selected == 2) zc->secwep_selected = 1;
 	
-	//ƒ`ƒLƒ“‚â‚ë‚¤========================
+	//ãƒã‚­ãƒ³ã‚„ã‚ã†========================
 	if(zc->battlemode == FIRE_CHIKEN)
 	{
 		if(--zc->battlesubcnt > 0  && ent->groundentity && ent->waterlevel < 2)

@@ -206,8 +206,8 @@ void Drop_General (edict_t *ent, gitem_t *item)
 }
 
 float Get_yaw (vec3_t vec);
-//edict_t *GetBotFlag1();	//ƒ`[ƒ€1‚ÌŠø
-//edict_t *GetBotFlag2();  //ƒ`[ƒ€2‚ÌŠø 
+//edict_t *GetBotFlag1();	//ãƒãƒ¼ãƒ 1ã®æ——
+//edict_t *GetBotFlag2();  //ãƒãƒ¼ãƒ 2ã®æ—— 
 //======================================================================
 qboolean Pickup_Navi (edict_t *ent, edict_t *other)
 {
@@ -241,7 +241,7 @@ qboolean Pickup_Navi (edict_t *ent, edict_t *other)
 					|| ent->union_ent->moveinfo.state == PSTATE_BOTTOM) other->client->zc.zcstate |= STS_W_ONDOORUP;
 			}
 			//j = other->client->zc.routeindex - 10;
-			//ƒ‹[ƒg‚ÌƒAƒbƒvƒf[ƒg
+			//ãƒ«ãƒ¼ãƒˆã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
 			for(i =  - MAX_DOORSEARCH; i <  MAX_DOORSEARCH  ;i++)
 			{
 				if(i <= 0) j = other->client->zc.routeindex - (MAX_DOORSEARCH - i) ;
@@ -297,10 +297,10 @@ qboolean Pickup_Navi (edict_t *ent, edict_t *other)
 		SetRespawn (ent, 1000000);
 		ent->solid = SOLID_NOT;
 	}
-	//roamnavi ‚â‚ß‚½
+	//roamnavi ã‚„ã‚ãŸ
 	else if( ent->classname[6] == '2')
 	{
-		//ƒ‹[ƒg‚ÌƒAƒbƒvƒf[ƒg
+		//ãƒ«ãƒ¼ãƒˆã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
 		for(i = 0;i < 10;i++)
 		{
 			if((other->client->zc.routeindex + i) >= CurrentIndex) break;
@@ -1056,7 +1056,7 @@ void Touch_Item (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf
 //	else gi.bprintf(PRINT_HIGH,"get %s %x inv %i!\n",ent->classname,ent->spawnflags,other->client->pers.inventory[ITEM_INDEX(ent->item)]);
 
 	k = false;
-	//flag set ƒtƒ@ƒ“ƒNƒVƒ‡ƒ“‚Ìã‚É‚ ‚éê‡‚Í–³‹
+	//flag set ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ã®ä¸Šã«ã‚ã‚‹å ´åˆã¯ç„¡è¦–
 	if(ent->groundentity) if(ent->groundentity->union_ent) k = true;
 
 	//route update
@@ -1215,7 +1215,7 @@ void droptofloor (edict_t *ent)
 		gi.setmodel (ent, ent->model);
 	else
 		gi.setmodel (ent, ent->item->world_model);
-	if(ent->classname[6] == 'F')	ent->s.modelindex = 0; //‚©‚­‚¹
+	if(ent->classname[6] == 'F')	ent->s.modelindex = 0; //ã‹ãã›
 
 	ent->solid = SOLID_TRIGGER;
 	ent->movetype = MOVETYPE_TOSS;  
@@ -1373,7 +1373,7 @@ void droptofloor2 (edict_t *ent)
 	v = tv(8,8,15);
 	VectorCopy (v, ent->maxs);
 /////////
-	if(ent->union_ent && Q_stricmp (ent->classname,"R_navi2")) //2‚ÍˆÚ“®‚È‚µ
+	if(ent->union_ent && Q_stricmp (ent->classname,"R_navi2")) //2ã¯ç§»å‹•ãªã—
 	{
 //		dest[0] = (ent->union_ent->s.origin[0] + ent->union_ent->mins[0] + ent->union_ent->s.origin[0] + ent->union_ent->maxs[0])/2;//ent->s.origin[0];
 //		dest[1] = (ent->union_ent->s.origin[1] + ent->union_ent->mins[1] + ent->union_ent->s.origin[1] + ent->union_ent->maxs[1])/2;
@@ -1404,7 +1404,7 @@ void droptofloor2 (edict_t *ent)
 		gi.setmodel (ent, ent->model);
 	else
 		gi.setmodel (ent, ent->item->world_model);*/
-	ent->s.modelindex = 0;				//‚©‚­‚¹I
+	ent->s.modelindex = 0;				//ã‹ãã›ï¼
 //ent->s.modelindex =gi.modelindex ("models/items/armor/body/tris.md2");
 	if(Q_stricmp (ent->classname,"R_navi3") == 0) ent->solid = SOLID_NOT;
 	else ent->solid = SOLID_TRIGGER;
@@ -1657,8 +1657,8 @@ Items can't be immediately dropped to floor, because they might
 be on an entity that hasn't spawned yet.
 ============
 */
-void SetBotFlag1(edict_t *ent);	//ƒ`[ƒ€1‚ÌŠø
-void SetBotFlag2(edict_t *ent);  //ƒ`[ƒ€2‚ÌŠø
+void SetBotFlag1(edict_t *ent);	//ãƒãƒ¼ãƒ 1ã®æ——
+void SetBotFlag2(edict_t *ent);  //ãƒãƒ¼ãƒ 2ã®æ——
 
 void SpawnItem (edict_t *ent, gitem_t *item)
 {

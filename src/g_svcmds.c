@@ -252,8 +252,8 @@ void SVCmd_WriteIP_f (void)
 
 
 
-//ƒ‹[ƒgC³
-//ƒm[ƒ}ƒ‹ƒ|ƒbƒh‚Í‘S‚ÄØ‚èŽÌ‚Ä
+//ãƒ«ãƒ¼ãƒˆä¿®æ­£
+//ãƒŽãƒ¼ãƒžãƒ«ãƒãƒƒãƒ‰ã¯å…¨ã¦åˆ‡ã‚Šæ¨ã¦
 void Move_LastRouteIndex()
 {
 	int	i;
@@ -273,7 +273,7 @@ void Move_LastRouteIndex()
 	}
 }
 
-//•ªŠò•t‚«‚É•ÏŠ·ˆ—
+//åˆ†å²ä»˜ãã«å¤‰æ›å‡¦ç†
 void	RouteTreepointSet()
 {
 	int	i;
@@ -296,7 +296,7 @@ void	Svcmd_Test_f (void)
 	gi.cprintf (NULL, PRINT_HIGH, "Svcmd_Test_f()\n");
 }
 
-//chainƒtƒ@ƒCƒ‹‚ÌƒZ[ƒu
+//chainãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚»ãƒ¼ãƒ–
 void SaveChain()
 {
 	char name[256];
@@ -309,7 +309,7 @@ void SaveChain()
 		return;
 	}
 
-	//‚Æ‚è‚ ‚¦‚¸CTF‚¾‚ß
+	//ã¨ã‚Šã‚ãˆãšCTFã ã‚
 	if(ctf->value) 	sprintf(name,".\\%s\\chctf\\%s.chf",gamepath->string,level.mapname);
 	else 	sprintf(name,".\\%s\\chdtm\\%s.chn",gamepath->string,level.mapname);
 

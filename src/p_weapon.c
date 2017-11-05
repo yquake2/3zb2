@@ -994,7 +994,7 @@ void Weapon_RocketLauncher_Fire (edict_t *ent)
 	if(ent->client->zc.aiming != 4) fire_rocket (ent, start, forward, damage, 650, damage_radius, radius_damage);
 	else 
 	{
-		damage -= 20;//ƒƒbƒNƒIƒ“‚Í20ƒ_ƒ[ƒWŒ¸‚è
+		damage -= 20;//ãƒ­ãƒƒã‚¯ã‚ªãƒ³ã¯20ãƒ€ãƒ¡ãƒ¼ã‚¸æ¸›ã‚Š
 		fire_lockon_rocket (ent, start, forward, damage, 20, damage_radius, radius_damage);
 	}
 
@@ -1011,11 +1011,11 @@ void Weapon_RocketLauncher_Fire (edict_t *ent)
 	if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
 		ent->client->pers.inventory[ent->client->ammo_index]--;
 
-//	ent->client->ps.fov = 90;					//ƒY[ƒ€‰ðœ
-	ent->client->zc.aiming = 0;					//ƒY[ƒ€•s‰Â
+//	ent->client->ps.fov = 90;					//ã‚ºãƒ¼ãƒ è§£é™¤
+	ent->client->zc.aiming = 0;					//ã‚ºãƒ¼ãƒ ä¸å¯
 }
 
-//ƒƒbƒNƒIƒ“ƒƒPƒbƒgƒ‰ƒ“ƒ`ƒƒ[
+//ãƒ­ãƒƒã‚¯ã‚ªãƒ³ãƒ­ã‚±ãƒƒãƒˆãƒ©ãƒ³ãƒãƒ£ãƒ¼
 void Weapon_LockonRocketLauncher_Fire (edict_t *ent)
 {
 	vec3_t	tmp,out,aim,min,max;
@@ -1024,13 +1024,13 @@ void Weapon_LockonRocketLauncher_Fire (edict_t *ent)
 
 	if (ent->client->buttons & BUTTON_ATTACK)
 	{
-		ent->client->zc.lockon = false;		//ƒXƒiƒCƒp[‚ÉƒƒbƒNƒIƒ“‹@”\‚È‚µ
+		ent->client->zc.lockon = false;		//ã‚¹ãƒŠã‚¤ãƒ‘ãƒ¼ã«ãƒ­ãƒƒã‚¯ã‚ªãƒ³æ©Ÿèƒ½ãªã—
 		if(ent->client->zc.aiming == 0)
 		{
 			gi.sound (ent, CHAN_WEAPON, gi.soundindex("weapons/sshotr1b.wav"), 1, ATTN_NONE, 0);
 			ent->client->zc.aiming = 3;
 			if(ent->client->zc.distance <10 || ent->client->zc.distance > 90) ent->client->zc.distance = 90;
-			ent->client->ps.fov = ent->client->zc.distance;//ƒY[ƒ€ŠJŽn
+			ent->client->ps.fov = ent->client->zc.distance;//ã‚ºãƒ¼ãƒ é–‹å§‹
 		}
 
 		VectorSet(max,8,8,8);
@@ -1065,7 +1065,7 @@ void Weapon_LockonRocketLauncher_Fire (edict_t *ent)
 						gi.sound (ent, CHAN_AUTO, gi.soundindex("3zb/locrloc.wav"), 1, ATTN_NORM, 0);
 					ent->client->zc.first_target = rs_trace.ent;
 				}
-				return;	//ƒI[ƒgƒY[ƒ€”½‰ž‚¹‚¸
+				return;	//ã‚ªãƒ¼ãƒˆã‚ºãƒ¼ãƒ åå¿œã›ãš
 			}
 			else ent->client->zc.first_target = NULL;
 		}
@@ -1107,7 +1107,7 @@ void Weapon_RocketLauncher (edict_t *ent)
 	static int	pause_frames[]	= {25, 33, 42, 50, 0};
 	static int	fire_frames[]	= {5, 0};
 
-	if(!(ent->client->buttons & BUTTON_ATTACK)) ent->client->zc.aiming = 0;	//ƒAƒNƒeƒBƒx[ƒg0
+	if(!(ent->client->buttons & BUTTON_ATTACK)) ent->client->zc.aiming = 0;	//ã‚¢ã‚¯ãƒ†ã‚£ãƒ™ãƒ¼ãƒˆ0
 
 	if(0/*1*/)
 	{
@@ -1824,7 +1824,7 @@ void RSight_think(edict_t *ent)
 
 	if(rs_trace.ent != NULL)
 	{
-		if(Q_stricmp (rs_trace.ent->classname, "player") == 0) return;//ƒI[ƒgƒY[ƒ€”½‰ž‚¹‚¸
+		if(Q_stricmp (rs_trace.ent->classname, "player") == 0) return;//ã‚ªãƒ¼ãƒˆã‚ºãƒ¼ãƒ åå¿œã›ãš
 	}
 
 	if(ent->owner->client->zc.autozoom )
@@ -1909,20 +1909,20 @@ void weapon_railgun_fire (edict_t *ent)
 	if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
 		ent->client->pers.inventory[ent->client->ammo_index]--;
 
-//	ent->client->ps.fov = 90;					//ƒY[ƒ€‰ðœ
-	ent->client->zc.aiming = 0;					//ƒY[ƒ€•s‰Â
+//	ent->client->ps.fov = 90;					//ã‚ºãƒ¼ãƒ è§£é™¤
+	ent->client->zc.aiming = 0;					//ã‚ºãƒ¼ãƒ ä¸å¯
 }
-//ƒXƒiƒCƒp[—prailƒKƒ“
+//ã‚¹ãƒŠã‚¤ãƒ‘ãƒ¼ç”¨railã‚¬ãƒ³
 void Weapon_SnipeRailgun (edict_t *ent)
 {
 	edict_t	*sight;
 
 	if (ent->client->buttons & BUTTON_ATTACK)
 	{
-		ent->client->zc.lockon = false;		//ƒXƒiƒCƒp[‚ÉƒƒbƒNƒIƒ“‹@”\‚È‚µ
+		ent->client->zc.lockon = false;		//ã‚¹ãƒŠã‚¤ãƒ‘ãƒ¼ã«ãƒ­ãƒƒã‚¯ã‚ªãƒ³æ©Ÿèƒ½ãªã—
 		if( ent->client->zc.aiming == 0)
 		{
-			//ƒTƒCƒg‚Ìì¬
+			//ã‚µã‚¤ãƒˆã®ä½œæˆ
 			sight = G_Spawn();
 			VectorClear (sight->mins);
 			VectorClear (sight->maxs);
@@ -1944,7 +1944,7 @@ void Weapon_SnipeRailgun (edict_t *ent)
 			gi.sound (ent, CHAN_WEAPON, gi.soundindex("weapons/sshotr1b.wav"), 1, ATTN_NONE, 0);
 			ent->client->zc.aiming = 1;
 			if(ent->client->zc.distance <10 || ent->client->zc.distance > 90) ent->client->zc.distance = 90;
-			ent->client->ps.fov = ent->client->zc.distance;//ƒY[ƒ€ŠJŽn
+			ent->client->ps.fov = ent->client->zc.distance;//ã‚ºãƒ¼ãƒ é–‹å§‹
 		}
 		return;
 	}
@@ -1959,7 +1959,7 @@ void Weapon_Railgun (edict_t *ent)
 	static int	pause_frames[]	= {56, 0};
 	static int	fire_frames[]	= {4, 0};
 
-	if(!(ent->client->buttons & BUTTON_ATTACK)) ent->client->zc.aiming = 0;	//ƒAƒNƒeƒBƒx[ƒg0
+	if(!(ent->client->buttons & BUTTON_ATTACK)) ent->client->zc.aiming = 0;	//ã‚¢ã‚¯ãƒ†ã‚£ãƒ™ãƒ¼ãƒˆ0
 
 	if(0)
 	{

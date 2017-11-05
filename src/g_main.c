@@ -78,8 +78,8 @@ void ReadLevel (char *filename);
 void InitGame (void);
 void G_RunFrame (void);
 
-void SetBotFlag1(edict_t *ent);	//ƒ`[ƒ€1‚ÌŠø
-void SetBotFlag2(edict_t *ent);  //ƒ`[ƒ€2‚ÌŠø
+void SetBotFlag1(edict_t *ent);	//ãƒãƒ¼ãƒ 1ã®æ——
+void SetBotFlag2(edict_t *ent);  //ãƒãƒ¼ãƒ 2ã®æ——
 
 //===================================================================
 
@@ -545,7 +545,7 @@ void G_RunFrame (void)
 				ctfjob_update = level.time + FRAMETIME * 2; 
 			}
 		}
-//////////Šø‚ÌƒXƒRƒAƒ`ƒFƒbƒN
+//////////æ——ã®ã‚¹ã‚³ã‚¢ãƒã‚§ãƒƒã‚¯
 		if(zigmode->value == 1)
 		{
 			if(next_fragadd < level.time)
@@ -561,7 +561,7 @@ void G_RunFrame (void)
 													g_edicts[i].client->resp.score += 1;
 						else
 						{
-							//Šø‚ğ‚Á‚Ä‚é‚Æƒtƒ‰ƒbƒO‚ğ‘«‚·
+							//æ——ã‚’æŒã£ã¦ã‚‹ã¨ãƒ•ãƒ©ãƒƒã‚°ã‚’è¶³ã™
 							for ( j = 1 ; j <= maxclients->value ; j++)
 							{
 								if(g_edicts[j].inuse)

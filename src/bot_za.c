@@ -214,7 +214,7 @@ int Bot_SearchEnemy (edict_t *ent)
 							if((9 * random()) < yaw)
 							{
 //gi.bprintf(PRINT_HIGH,"Team stateON\n");
-								//‘Šè‚ªƒŠ[ƒ_[
+								//ç›¸æ‰‹ãŒãƒªãƒ¼ãƒ€ãƒ¼
 								if(trent->client->zc.tmplstate == TMS_LEADER)
 								{
 									trent->client->zc.followmate = NULL;
@@ -335,7 +335,7 @@ int Bot_SearchEnemy (edict_t *ent)
 					}
 				}
 			}
-			//‰¹‚Ì‚İ‚ÅêŠ‚ğ”»’f
+			//éŸ³ã®ã¿ã§å ´æ‰€ã‚’åˆ¤æ–­
 			else
 			{
 				if(Bot[ent->client->zc.botindex].param[BOP_NOISECHK]
@@ -890,7 +890,7 @@ void Bot_SearchItems (edict_t *ent)
 }
 
 //-----------------------------------------------------------------------------------------
-//ƒoƒNƒnƒc•¨‰ñ”ğ
+//ãƒã‚¯ãƒãƒ„ç‰©å›é¿
 //Avoid explotion		
 //
 #define EXPLO_BOXSIZE	64
@@ -932,7 +932,7 @@ qboolean Bot_ExploAvoid(edict_t *ent,vec3_t	v)
 	return true;
 }
 
-//ƒŒ[ƒU[‚Ìƒ`ƒFƒbƒN
+//ãƒ¬ãƒ¼ã‚¶ãƒ¼ã®ãƒã‚§ãƒƒã‚¯
 qboolean CheckLaser(vec3_t pos,vec3_t maxs,vec3_t mins)
 {
 	int	i;
@@ -978,7 +978,7 @@ qboolean CheckLaser(vec3_t pos,vec3_t maxs,vec3_t mins)
 }
 
 //-----------------------------------------------------------------------------------------
-// BOTˆÚ“®‰Â”\”»’ènew
+// BOTç§»å‹•å¯èƒ½åˆ¤å®šnew
 // bot move test
 //  return	false	can't 
 //			true	stand
@@ -997,7 +997,7 @@ int Bot_moveT ( edict_t *ent,float ryaw,vec3_t pos,float dist,float *bottom)
 
 
 
-	tcontents =/* MASK_BOTSOLID*/MASK_BOTSOLIDX;//MASK_PLAYERSOLID /*| CONTENTS_TRANSLUCENT*/;  //ƒŒ[ƒU[‚É‚ÍG‚ç‚È‚¢
+	tcontents =/* MASK_BOTSOLID*/MASK_BOTSOLIDX;//MASK_PLAYERSOLID /*| CONTENTS_TRANSLUCENT*/;  //ãƒ¬ãƒ¼ã‚¶ãƒ¼ã«ã¯è§¦ã‚‰ãªã„
 //	if(!ent->waterlevel) tcontents |= CONTENTS_WATER;
 
 	if(/*ent->client->zc.waterstate == WAS_FLOAT*/ent->waterlevel >= 1/*2*/) tracelimit = 75;//75;//61;
@@ -1021,7 +1021,7 @@ int Bot_moveT ( edict_t *ent,float ryaw,vec3_t pos,float dist,float *bottom)
 		if((v[2] - ent->s.origin[2]) > 20) trmax[2] = 31;
 	}
 
-	//ˆÚ“®æ‚ª‚Ç‚¤‚È‚Á‚Ä‚¢‚é‚Ì‚©’²‚×‚é
+	//ç§»å‹•å…ˆãŒã©ã†ãªã£ã¦ã„ã‚‹ã®ã‹èª¿ã¹ã‚‹
 	yaw = ryaw*M_PI*2 / 360;
 	trend[0] = cos(yaw) * dist ;				//start
 	trend[1] = sin(yaw) * dist ;
@@ -1033,7 +1033,7 @@ int Bot_moveT ( edict_t *ent,float ryaw,vec3_t pos,float dist,float *bottom)
 	rs_trace = gi.trace (trstart, trmin, trmax, trend,ent, tcontents);
 	
 	trmax[2] += 1;
-	if(rs_trace.allsolid || rs_trace.startsolid || rs_trace.fraction != 1.0)	//‘O‚É‚Íi‚ß‚È‚¢ê‡
+	if(rs_trace.allsolid || rs_trace.startsolid || rs_trace.fraction != 1.0)	//å‰ã«ã¯é€²ã‚ãªã„å ´åˆ
 	{
 		moveok = false;
 		VectorCopy (trstart, trend);
@@ -1119,7 +1119,7 @@ int Bot_moveT ( edict_t *ent,float ryaw,vec3_t pos,float dist,float *bottom)
 		if(!rs_trace.allsolid && !rs_trace.startsolid)	return true;
 		return 2;*/
 	} 
-	else								//i‚ß‚½‚Æ‚µ‚Ä‚à—‚¿‚½‚­‚È‚¢‚Ì‚½‚ß‚Ìƒ`ƒFƒbƒN
+	else								//é€²ã‚ãŸã¨ã—ã¦ã‚‚è½ã¡ãŸããªã„æ™‚ã®ãŸã‚ã®ãƒã‚§ãƒƒã‚¯
 	{
 		pos[0] = trstart[0];
 		pos[1] = trstart[1];
@@ -1328,7 +1328,7 @@ int Bot_moveW ( edict_t *ent,float ryaw,vec3_t pos,float dist,float *bottom)
 	tcontents = MASK_BOTSOLIDX/*MASK_PLAYERSOLID*/;
 	tcontents |= CONTENTS_WATER;
 
-	//ˆÚ“®æ‚ª‚Ç‚¤‚È‚Á‚Ä‚¢‚é‚Ì‚©’²‚×‚é
+	//ç§»å‹•å…ˆãŒã©ã†ãªã£ã¦ã„ã‚‹ã®ã‹èª¿ã¹ã‚‹
 	yaw = ryaw*M_PI*2 / 360;
 	trend[0] = cos(yaw) * dist ;				//start
 	trend[1] = sin(yaw) * dist ;
@@ -1735,7 +1735,7 @@ qboolean Bot_Fall(edict_t *ent,vec3_t pos,float dist)
 
 		VectorCopy(v,vv);
 		vv[2] = 0;
-		//vell—¶‚Ì—‰º
+		//velè€ƒæ…®ã®è½ä¸‹
 		if(Route[zc->routeindex].state == GRS_ONTRAIN)
 		{
 			if(1/*Route[zc->routeindex].ent->trainteam == NULL*/)
@@ -1815,7 +1815,7 @@ JUMPCATCH:
 	vv[2] = 0;
 	if(mode == 2)
 	{	
-		//vell—¶‚Ì—‰º
+		//velè€ƒæ…®ã®è½ä¸‹
 		if(Route[zc->routeindex].state == GRS_ONTRAIN)
 		{
 			if(1/*Route[zc->routeindex].ent->trainteam == NULL*/)
@@ -2551,7 +2551,7 @@ if(ctf->value) j = 0;
 			ent->maxs[2] = 4;
 		}	
 	}
-DCHCANC://‚µ‚á‚ª‚İ‚Á‚Ï‚È‚µ	
+DCHCANC://ã—ã‚ƒãŒã¿ã£ã±ãªã—	
 	//--------------------------------------------------------------------------------------
 	//movingspeed set
 	if(ent->groundentity || ent->waterlevel)
@@ -2682,7 +2682,7 @@ DCHCANC://‚µ‚á‚ª‚İ‚Á‚Ï‚È‚µ
 					}
 				}
 			}
-			//Œ‚‚ÄGrapple
+			//æ’ƒã¦Grapple
 			else if(Route[zc->routeindex - 1].state == GRS_GRAPSHOT
 				&& ent->client->ctf_grapple == NULL
 				&& zc->first_target == NULL)
@@ -3034,7 +3034,7 @@ gi.bprintf(PRINT_HIGH,"OFF 5\n"); //ppx
 	//
 	//
 	//
-	//	’òq‚ğ“o‚é
+	//	æ¢¯å­ã‚’ç™»ã‚‹
 	//
 	//
 	//--------------------------------------------------------------------------------------
@@ -3222,7 +3222,7 @@ gi.bprintf(PRINT_HIGH,"ladder OFF2!!\n");
 	//
 	//
 	//
-	//	ˆÚ“®•ûŒüŒˆ’è
+	//	ç§»å‹•æ–¹å‘æ±ºå®š
 	//
 	//
 	//--------------------------------------------------------------------------------------
@@ -3309,7 +3309,7 @@ gi.bprintf(PRINT_HIGH,"ladder OFF2!!\n");
 		ent->s.angles[PITCH] = Get_pitch(temppos);
 	}
 */
-	//ƒ`[ƒ€ƒvƒŒƒC‚Ìƒ‹[ƒ`ƒ“
+	//ãƒãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤æ™‚ã®ãƒ«ãƒ¼ãƒãƒ³
 	if(ctf->value ||((int)(dmflags->value) & (DF_MODELTEAMS | DF_SKINTEAMS)))
 	{
 		if(ctf->value)
@@ -3490,7 +3490,7 @@ gi.bprintf(PRINT_HIGH,"ladder OFF2!!\n");
 
 	if(1/*!(zc->zcstate & STS_WAITSMASK)*/)
 	{
-		//ƒ‹[ƒgƒgƒŒ[ƒX—pindexŒŸõ
+		//ãƒ«ãƒ¼ãƒˆãƒˆãƒ¬ãƒ¼ã‚¹ç”¨indexæ¤œç´¢
 		if(!zc->route_trace && zc->rt_releasetime <= level.time)
 		{
 			//zc->routeindex;
@@ -3636,7 +3636,7 @@ gi.bprintf(PRINT_HIGH,"ladder OFF2!!\n");
 					}
 				}
 
-				//ƒgƒŠƒK‚ğŒ‚‚Â
+				//ãƒˆãƒªã‚¬ã‚’æ’ƒã¤
 				if(k && !(ent->client->buttons & BUTTON_ATTACK))
 				{
 //gi.bprintf(PRINT_HIGH,"ooooooo!\n");
@@ -3656,7 +3656,7 @@ gi.bprintf(PRINT_HIGH,"ladder OFF2!!\n");
 					else VectorSubtract(v,ent->s.origin,trmax);
 
 //gi.bprintf(PRINT_HIGH,"shoot!\n");
-					//”š”­ƒ‚ƒm‚Ì‚Í‚¿‘Ö‚¦
+					//çˆ†ç™ºãƒ¢ãƒã®æ™‚ã¯æŒã¡æ›¿ãˆ
 					i = Get_KindWeapon(ent->client->pers.weapon);
 					if(!zc->first_target && it_ent->takedamage)
 					{
@@ -3727,7 +3727,7 @@ gi.bprintf(PRINT_HIGH,"OFF 10\n");
 					}
 					else f1 = -(JumpMax + 64);
 				}
-//“’Bƒ`ƒFƒbƒN
+//åˆ°é”ãƒã‚§ãƒƒã‚¯
 				if( Route[zc->routeindex].state == GRS_ONROTATE) yaw = -48;
 				else yaw = 12;
 				if(v[0] <= (ent->absmax[0] - yaw) && v[0] >= (ent->absmin[0] + yaw))
@@ -3740,7 +3740,7 @@ gi.bprintf(PRINT_HIGH,"OFF 10\n");
 						{
 							if(zc->routeindex < CurrentIndex /*&& TraceX(ent,Route[zc->routeindex + 1].Pt)*/)
 							{
-//ƒAƒCƒeƒ€ƒŠƒ“ƒNƒ`ƒFƒbƒN1>>
+//ã‚¢ã‚¤ãƒ†ãƒ ãƒªãƒ³ã‚¯ãƒã‚§ãƒƒã‚¯1>>
 								if(Route[zc->routeindex].state <= GRS_ITEMS)
 								{
 									if(zc->havetarget)
@@ -3778,7 +3778,7 @@ gi.bprintf(PRINT_HIGH,"OFF 10\n");
 										}									
 									}
 								}
-//ƒAƒCƒeƒ€ƒŠƒ“ƒNƒ`ƒFƒbƒN<<
+//ã‚¢ã‚¤ãƒ†ãƒ ãƒªãƒ³ã‚¯ãƒã‚§ãƒƒã‚¯<<
 								zc->routeindex++;
 								//not a normal pod
 								if(zc->routeindex < CurrentIndex)
@@ -3853,7 +3853,7 @@ gi.bprintf(PRINT_HIGH,"OFF 10\n");
 											VectorCopy(temppos,ent->s.origin);
 											VectorCopy(v,trmin);
 											dist -= x;
-//ƒAƒCƒeƒ€ƒŠƒ“ƒNƒ`ƒFƒbƒN2>>
+//ã‚¢ã‚¤ãƒ†ãƒ ãƒªãƒ³ã‚¯ãƒã‚§ãƒƒã‚¯2>>
 											if(Route[zc->routeindex].state <= GRS_ITEMS)
 											{
 												if(zc->havetarget)
@@ -3872,7 +3872,7 @@ gi.bprintf(PRINT_HIGH,"OFF 10\n");
 													}
 												}
 											}
-//ƒAƒCƒeƒ€ƒŠƒ“ƒNƒ`ƒFƒbƒN<<
+//ã‚¢ã‚¤ãƒ†ãƒ ãƒªãƒ³ã‚¯ãƒã‚§ãƒƒã‚¯<<
 											zc->routeindex++;
 											if(i == 2) ent->client->ps.pmove.pm_flags |= PMF_DUCKED;
 										
@@ -3996,7 +3996,7 @@ gi.bprintf(PRINT_HIGH,"OFF 8\n"); //ppx
 	//
 	//
 	//
-	//	‚ ‚µ‚à‚ÆŠm”F
+	//	ã‚ã—ã‚‚ã¨ç¢ºèª
 	//
 	//
 	//--------------------------------------------------------------------------------------
@@ -4633,7 +4633,7 @@ gi.bprintf(PRINT_HIGH,"ladder On!\n");
 				PlayerNoise(ent, ent->s.origin, PNOISE_SELF);	//pon
 				Set_BotAnim(ent,ANIM_JUMP,FRAME_jump1-1,FRAME_jump6);
 				ent->client->buttons |= BUTTON_ATTACK;
-				goto VCHCANSEL;		//ˆÚ“®ˆ—ƒLƒƒƒ“ƒZƒ‹
+				goto VCHCANSEL;		//ç§»å‹•å‡¦ç†ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 			}
 			else zc->second_target = NULL;
 		}
@@ -5200,7 +5200,7 @@ GOMOVE:
 				x = zc->second_target->s.origin[2] - ent->s.origin[2];
 				if(x > 13/*8*/) x = 13;//8;
 				else if(x < -13/*8*/) x = -13;//8;
-				if(x < 0)//ƒAƒCƒeƒ€‰º•û
+				if(x < 0)//ã‚¢ã‚¤ãƒ†ãƒ ä¸‹æ–¹
 				{
 					if( Bot_Watermove (ent,temppos,dist,x))
 					{
@@ -5209,7 +5209,7 @@ GOMOVE:
 					}
 				}
 				else if(x >0 && zc->waterstate == WAS_IN
-					&& !(ent->client->ps.pmove.pm_flags & PMF_DUCKED)) //ƒAƒCƒeƒ€ã•û
+					&& !(ent->client->ps.pmove.pm_flags & PMF_DUCKED)) //ã‚¢ã‚¤ãƒ†ãƒ ä¸Šæ–¹
 				{
 					if(ent->velocity[2] < 0) ent->velocity[2] = 0; 
 					if( Bot_Watermove (ent,temppos,dist,x))
@@ -5227,7 +5227,7 @@ GOMOVE:
 				x = v[2] - ent->s.origin[2];
 				if(x > 13/*8*/) x = 13;//8;
 				else if(x < -13/*8*/) x = -13;//8;
-				if(x < 0)//ƒAƒCƒeƒ€‰º•û
+				if(x < 0)//ã‚¢ã‚¤ãƒ†ãƒ ä¸‹æ–¹
 				{
 					if( Bot_Watermove (ent,temppos,dist,x))
 					{
@@ -5237,7 +5237,7 @@ GOMOVE:
 					}
 				}
 				else if(x > 0 && zc->waterstate == WAS_IN
-					&& !(ent->client->ps.pmove.pm_flags & PMF_DUCKED)) //ƒAƒCƒeƒ€ã•û
+					&& !(ent->client->ps.pmove.pm_flags & PMF_DUCKED)) //ã‚¢ã‚¤ãƒ†ãƒ ä¸Šæ–¹
 				{
 //gi.bprintf(PRINT_HIGH,"UP! %f\n",x);
 					if(ent->velocity[2] < -10) ent->velocity[2] = 0; 
@@ -5277,7 +5277,7 @@ GOMOVE:
 				}				
 			}
 			if(zc->waterstate == WAS_IN)  ent->moveinfo.decel = level.time;
-			else if(!k)	//…–Ê‚É‚¸‚Á‚Æ‚¢‚½‚Æ‚«
+			else if(!k)	//æ°´é¢ã«ãšã£ã¨ã„ãŸã¨ã
 			{
 				if( ( level.time - ent->moveinfo.decel) > 4.0 && !zc->route_trace)
 				{
@@ -5513,11 +5513,11 @@ GOMOVE:
 									zc->second_target = trent;
 									trent->target_ent = ent;
 
-									//ƒgƒOƒ‹®‚Í‚·‚®‘–‚é
+									//ãƒˆã‚°ãƒ«å¼ã¯ã™ãèµ°ã‚‹
 									if(e->spawnflags & PDOOR_TOGGLE)
 									{
 										f1 = e->moveinfo.start_origin[2] - e->moveinfo.end_origin[2];
-										//ƒXƒ^[ƒg’n“_‚ªã
+										//ã‚¹ã‚¿ãƒ¼ãƒˆåœ°ç‚¹ãŒä¸Š
 										if(f1 > 0 )
 										{
 											k = true;
@@ -5543,11 +5543,11 @@ GOMOVE:
 											}
 										}
 									}
-									//ƒm[ƒ}ƒ‹
+									//ãƒãƒ¼ãƒãƒ«
 									else
 									{
 										f1 = e->moveinfo.start_origin[2] - e->moveinfo.end_origin[2];
-										//ƒXƒ^[ƒg’n“_‚ªã
+										//ã‚¹ã‚¿ãƒ¼ãƒˆåœ°ç‚¹ãŒä¸Š
 										if(f1 > 0 )
 										{
 											if(e->moveinfo.state == PSTATE_BOTTOM || e->moveinfo.state == PSTATE_UP)

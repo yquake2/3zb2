@@ -788,7 +788,7 @@ void G_FindRouteLink(edict_t *ent)
 	float	x;
 
 
-	//Šø‚ð”­¶‚³‚¹‚é
+	//æ——ã‚’ç™ºç”Ÿã•ã›ã‚‹
 	if(!ctf->value && zigmode->value == 1)
 	{
 		item = FindItem("Zig Flag");
@@ -926,10 +926,10 @@ Creates a server's entity / program execution context by
 parsing textual entity definitions out of an ent file.
 ==============
 */
-//void SetBotFlag1(edict_t *ent);	//ƒ`[ƒ€1‚ÌŠø
-//void SetBotFlag2(edict_t *ent);  //ƒ`[ƒ€2‚ÌŠø
+//void SetBotFlag1(edict_t *ent);	//ãƒãƒ¼ãƒ 1ã®æ——
+//void SetBotFlag2(edict_t *ent);  //ãƒãƒ¼ãƒ 2ã®æ——
 
-//void CTFSetupNavSpawn();	//ƒiƒr‚ÌÝ’u
+//void CTFSetupNavSpawn();	//ãƒŠãƒ“ã®è¨­ç½®
 void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 {
 	edict_t		*ent;
@@ -1033,7 +1033,7 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 
 	PlayerTrail_Init ();
 
-	//func_train‚ÌƒŠƒ“ƒN
+	//func_trainã®ãƒªãƒ³ã‚¯
 	G_FindTrainTeam();
 
 
@@ -1043,16 +1043,16 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 //ZOID
 
 //ponko	
-	CTFSetupNavSpawn();	//ƒiƒr‚ÌÝ’u
-	if(!chedit->value) G_FindItemLink();	//ƒAƒCƒeƒ€‚ÌƒŠƒ“ƒN(’ÊíŽž‚Ì‚Ý)
+	CTFSetupNavSpawn();	//ãƒŠãƒ“ã®è¨­ç½®
+	if(!chedit->value) G_FindItemLink();	//ã‚¢ã‚¤ãƒ†ãƒ ã®ãƒªãƒ³ã‚¯(é€šå¸¸æ™‚ã®ã¿)
 
 	G_SpawnRouteLink();
 
 	if(zigmode->value == 1) zigflag_spawn = 1;
 	else zigflag_spawn = 0;
-	//Šø‚ÌƒAƒCƒeƒ€ƒAƒhƒŒƒXŽæ“¾
+	//æ——ã®ã‚¢ã‚¤ãƒ†ãƒ ã‚¢ãƒ‰ãƒ¬ã‚¹å–å¾—
 	zflag_item =  FindItem("Zig Flag");
-	zflag_ent = NULL;		//‰Šú‰»
+	zflag_ent = NULL;		//åˆæœŸåŒ–
 //	if(CurrentIndex > 0)
 //ponko
 

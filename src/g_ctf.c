@@ -831,12 +831,12 @@ static void CTFFlagThink(edict_t *ent)
 
 void droptofloor (edict_t *ent);
 void SpawnItem3 (edict_t *ent, gitem_t *item);
-//edict_t *GetBotFlag1();	//ƒ`[ƒ€1‚ÌŠø
-//edict_t *GetBotFlag2();  //ƒ`[ƒ€2‚ÌŠø 
+//edict_t *GetBotFlag1();	//ãƒãƒ¼ãƒ 1ã®æ——
+//edict_t *GetBotFlag2();  //ãƒãƒ¼ãƒ 2ã®æ—— 
 void ChainPodThink (edict_t *ent);
-qboolean ChkTFlg( void );//ŠøƒZƒbƒgƒAƒbƒvÏ‚İH
-void SetBotFlag1(edict_t *ent);	//ƒ`[ƒ€1‚ÌŠø
-void SetBotFlag2(edict_t *ent);  //ƒ`[ƒ€2‚ÌŠø
+qboolean ChkTFlg( void );//æ——ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—æ¸ˆã¿ï¼Ÿ
+void SetBotFlag1(edict_t *ent);	//ãƒãƒ¼ãƒ 1ã®æ——
+void SetBotFlag2(edict_t *ent);  //ãƒãƒ¼ãƒ 2ã®æ——
 
 void CTFFlagSetup (edict_t *ent)
 {
@@ -3000,7 +3000,7 @@ void CTFSetupNavSpawn()
 //PONKO
 	spawncycle = level.time + FRAMETIME * 100;
 //PONKO
-	//ƒ‹[ƒg‰Šú‰»
+	//ãƒ«ãƒ¼ãƒˆåˆæœŸåŒ–
 	CurrentIndex = 0;
 	memset(Route,0,sizeof(Route));
 	memset(code,0,8);
@@ -3142,12 +3142,12 @@ void SpawnExtra(vec3_t position,char *classname)
 void CTFJobAssign (void)
 {
 	int			i;
-	int			defend1,defend2;		//ƒfƒBƒtƒFƒ“ƒ_[‘”
-	int			mate1,mate2;		//ƒ`[ƒ€ƒƒCƒg‘”
+	int			defend1,defend2;		//ãƒ‡ã‚£ãƒ•ã‚§ãƒ³ãƒ€ãƒ¼ç·æ•°
+	int			mate1,mate2;		//ãƒãƒ¼ãƒ ãƒ¡ã‚¤ãƒˆç·æ•°
 	gclient_t	*client;
 	edict_t		*e;
-	edict_t		*defei1,*defei2;		//Œó•â
-	edict_t		*geti1,*geti2;		//Œó•â
+	edict_t		*defei1,*defei2;		//å€™è£œ
+	edict_t		*geti1,*geti2;		//å€™è£œ
 
 	defend1 = 0;
 	defend2 = 0;

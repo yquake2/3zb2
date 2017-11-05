@@ -128,8 +128,8 @@ only happens when a new game is started or a save game
 is loaded.
 ============
 */
-void SetBotFlag1(edict_t *ent);	//ƒ`[ƒ€1‚ÌŠø
-void SetBotFlag2(edict_t *ent);  //ƒ`[ƒ€2‚ÌŠø
+void SetBotFlag1(edict_t *ent);	//ãƒãƒ¼ãƒ 1ã®æ——
+void SetBotFlag2(edict_t *ent);  //ãƒãƒ¼ãƒ 2ã®æ——
 void InitGame (void)
 {
 	gi.dprintf ("==== InitGame ====\n");
@@ -224,7 +224,7 @@ void InitGame (void)
 //ZOID
 	CTFInit();
 //ZOID
-	Load_BotInfo();		//ƒRƒ“ƒtƒBƒO“Ç‚İ‚İ3ZBConfig.cfg
+	Load_BotInfo();		//ã‚³ãƒ³ãƒ•ã‚£ã‚°èª­ã¿è¾¼ã¿3ZBConfig.cfg
 }
 
 //=========================================================

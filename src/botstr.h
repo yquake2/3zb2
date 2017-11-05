@@ -10,14 +10,14 @@ typedef struct zgcl_s
 
 	int			botindex;		//botlist's index NO.
 
-// true client用 zoom フラグ	
+// true client逕ｨ zoom 繝輔Λ繧ｰ	
 	int			aiming;			//0-not 1-aiming  2-firing zoomingflag
-	float		distance;		//zoom中のFOV値
-	float		olddistance;	//旧zooming FOV値
+	float		distance;		//zoom荳ｭ縺ｮFOV蛟､
+	float		olddistance;	//譌ｧzooming FOV蛟､
 	qboolean	autozoom;		//autozoom
 	qboolean	lockon;			//lockon flag false-not true-locking
 
-// bot用	
+// bot逕ｨ	
 	int			zcstate;		//status
 	int			zccmbstt;		//combat status
 

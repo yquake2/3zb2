@@ -94,7 +94,7 @@ void Load_BotInfo()
 	}
 	else
 	{
-		fseek( fp, 0, SEEK_SET);	//æ“ª‚ÖˆÚ“®
+		fseek( fp, 0, SEEK_SET);	//å…ˆé ­ã¸ç§»å‹•
 		while(1)
 		{
 			if(fgets( Buff, sizeof(Buff), fp ) == NULL) goto MESS_NOTFOUND;
@@ -113,7 +113,7 @@ MESS_NOTFOUND:
 		//if(botlist->string == NULL) strcpy(MessageSection,BOTLIST_SECTION_DM);
 		//else 
 		sprintf(MessageSection,"[%s]",botlist->string);
-		fseek( fp, 0, SEEK_SET);	//æ“ª‚ÖˆÚ“®
+		fseek( fp, 0, SEEK_SET);	//å…ˆé ­ã¸ç§»å‹•
 		while(1)
 		{
 			if(fgets( Buff, sizeof(Buff), fp ) == NULL)
@@ -127,7 +127,7 @@ MESS_NOTFOUND:
 		if(MessageSection[0] == 0)
 		{
 			strcpy(MessageSection,BOTLIST_SECTION_DM);
-			fseek( fp, 0, SEEK_SET);	//æ“ª‚ÖˆÚ“®
+			fseek( fp, 0, SEEK_SET);	//å…ˆé ­ã¸ç§»å‹•
 			while(1)
 			{
 				if(fgets( Buff, sizeof(Buff), fp ) == NULL) goto BOTLIST_NOTFOUND;
@@ -222,7 +222,7 @@ BOTLIST_NOTFOUND:
 //
 //----------------------------------------------------------------
 
-int Get_NumOfPlayer (void) //Bot‚àŠÜ‚ß‚½player‚Ì”
+int Get_NumOfPlayer (void) //Botã‚‚å«ã‚ãŸplayerã®æ•°
 {
 	int i,j;
 	edict_t *ent;
@@ -465,8 +465,8 @@ void PutBotInServer (edict_t *ent)
 	ent->pain_debounce_time = level.time;
 	ent->targetname = NULL;
 
-	ent->moveinfo.speed = 1.0;	//ƒWƒƒƒ“ƒv’†‚ÌˆÚ“®—¦‚É‚Â‚¢‚Ä’Ç‰Á
-	ent->moveinfo.state = GETTER;	//CTFƒXƒe[ƒ^ƒX‰Šú‰»
+	ent->moveinfo.speed = 1.0;	//ã‚¸ãƒ£ãƒ³ãƒ—ä¸­ã®ç§»å‹•çŽ‡ã«ã¤ã„ã¦è¿½åŠ 
+	ent->moveinfo.state = GETTER;	//CTFã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹åˆæœŸåŒ–
 
 	ent->prethink = NULL;
 	ent->think = Bot_Think;
@@ -829,7 +829,7 @@ void ZigockClientJoin(edict_t  *ent,int zclass)
 {
 	PMenu_Close(ent);
 
-	ent->moveinfo.sound_end = CLS_ALPHA;	//PutClient‚Ì‘O‚ÉƒNƒ‰ƒXŒˆ’è
+	ent->moveinfo.sound_end = CLS_ALPHA;	//PutClientã®å‰ã«ã‚¯ãƒ©ã‚¹æ±ºå®š
 
 	ent->svflags &= ~SVF_NOCLIENT;
 	PutClientInServer (ent);
@@ -971,7 +971,7 @@ void AirStrike_Think(edict_t *ent)
 
 		if( target->classname[0] == 'p')
 		{
-			//ctf ‚È‚çƒ`[ƒ€ƒƒCƒg–³Ž‹
+			//ctf ãªã‚‰ãƒãƒ¼ãƒ ãƒ¡ã‚¤ãƒˆç„¡è¦–
 			if(!ctf->value || (ctf->value && ent->owner->client->resp.ctf_team != target->client->resp.ctf_team))
 			{
 				rs_trace = gi.trace (point,NULL,NULL,target->s.origin,ent, CONTENTS_SOLID | CONTENTS_WINDOW | CONTENTS_LAVA | CONTENTS_SLIME);
@@ -1020,7 +1020,7 @@ void Cmd_AirStrike(edict_t *ent)
 	}*/
 
 	VectorCopy(rs_trace.endpos,strpoint);
-	strpoint[2] -= 16;	//‚¿‚å‚Á‚Æ‚¾‚¯‰º‚Ö‚¸‚ç‚·
+	strpoint[2] -= 16;	//ã¡ã‚‡ã£ã¨ã ã‘ä¸‹ã¸ãšã‚‰ã™
 
 	f = ent->s.angles[YAW]*M_PI*2 / 360;
 	tts[0] = cos(f) * (-8190) ;

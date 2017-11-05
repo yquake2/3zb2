@@ -663,7 +663,7 @@ UpdateExplIndex(rocket);
 
 	gi.linkentity (rocket);
 }
-//ƒƒbƒNƒIƒ“ƒ~ƒTƒCƒ‹
+//ãƒ­ãƒƒã‚¯ã‚ªãƒ³ãƒŸã‚µã‚¤ãƒ«
 void think_lockon_rocket(edict_t *ent)
 {
 	vec3_t	v;
@@ -715,7 +715,7 @@ void think_lockon_rocket(edict_t *ent)
 		return;
 	}
 
-	//ŽžŠÔØ‚ê
+	//æ™‚é–“åˆ‡ã‚Œ
 	if(ent->moveinfo.accel <= level.time) 
 	{
 		T_RadiusDamage(ent, ent->owner, ent->radius_dmg, NULL, ent->dmg_radius, MOD_R_SPLASH);
