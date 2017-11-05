@@ -1238,7 +1238,7 @@ void heat_think (edict_t *self)
 			continue;
 		
 		// if we need to reduce the tracking cone
-		/*
+
 		{
 			vec3_t	vec;
 			float	dot;

@@ -352,7 +352,7 @@ void CTFAssignTeam(gclient_t *who)
 			team2count++;
 		}
 	}
-	if (team1count < team1count)
+	if (team1count < team2count)
 		who->resp.ctf_team = CTF_TEAM1;
 	else if (team2count < team1count)
 		who->resp.ctf_team = CTF_TEAM2;
@@ -379,10 +379,16 @@ edict_t *SelectCTFSpawnPoint (edict_t *ent)
 	char	*cname;
 
 	if (ent->client->resp.ctf_state != CTF_STATE_START)
+	{
 		if ( (int)(dmflags->value) & DF_SPAWN_FARTHEST)
-			return SelectFarthestDeathmatchSpawnPoint ();
+		{
+			return SelectFarthestDeathmatchSpawnPoint();
+		}
 		else
-			return SelectRandomDeathmatchSpawnPoint ();
+		{
+			return SelectRandomDeathmatchSpawnPoint();
+		}
+	}
 
 	ent->client->resp.ctf_state = CTF_STATE_PLAYING;
 
@@ -807,20 +813,19 @@ void CTFDeadDropFlag(edict_t *self)
 	}
 }
 
-qboolean CTFDrop_Flag(edict_t *ent, gitem_t *item)
+void
+CTFDrop_Flag(edict_t *ent, gitem_t *item)
 {
-	if (rand() & 1) 
+	if (rand() & 1)
 	{
-		if(!(ent->svflags & SVF_MONSTER))
 		gi.cprintf(ent, PRINT_HIGH, "Only lusers drop flags.\n");
 	}
 	else
 	{
-		if(!(ent->svflags & SVF_MONSTER))
 		gi.cprintf(ent, PRINT_HIGH, "Winners don't drop flags.\n");
 	}
-	return false;
 }
+
 
 static void CTFFlagThink(edict_t *ent)
 {
@@ -2771,10 +2776,10 @@ int CTFUpdateJoinMenu(edict_t *ent)
 	joinmenu[6].SelectFunc = CTFJoinTeam2;
 
 	if (ctf_forcejoin->string && *ctf_forcejoin->string) {
-		if (stricmp(ctf_forcejoin->string, "red") == 0) {
+		if (Q_stricmp(ctf_forcejoin->string, "red") == 0) {
 			joinmenu[6].text = NULL;
 			joinmenu[6].SelectFunc = NULL;
-		} else if (stricmp(ctf_forcejoin->string, "blue") == 0) {
+		} else if (Q_stricmp(ctf_forcejoin->string, "blue") == 0) {
 			joinmenu[4].text = NULL;
 			joinmenu[4].SelectFunc = NULL;
 		}

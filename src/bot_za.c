@@ -1011,7 +1011,7 @@ int Bot_moveT ( edict_t *ent,float ryaw,vec3_t pos,float dist,float *bottom)
 	else VectorSet (vv,16,16,3);
 
 	if(0/*!(ent->client->ps.pmove.pm_flags & PMF_DUCKED)
-		&& (ent->client->zc.n_duckedtime < FRAMETIME * 10 /*&& !ent->client->zc.route_trace)*/) trmax[2] = 31;
+		&& (ent->client->zc.n_duckedtime < FRAMETIME * 10 && !ent->client->zc.route_trace)*/) trmax[2] = 31;
 //	else if(ent->waterlevel && !ent->groundentity) trmax[2] = 32;
 	else if(ent->client->zc.route_trace
 		&& !(ent->client->ps.pmove.pm_flags & PMF_DUCKED)
@@ -2287,7 +2287,7 @@ void Bots_Move_NORM (edict_t *ent)
 	gitem_t		*item;
 
 	float		x,yaw,iyaw,f1,f2,f3,bottom;
-	qboolean	tempflag;//,buttonuse;
+	int     	tempflag;//,buttonuse;
 	vec3_t		temppos;
 
 	trace_t		rs_trace;
@@ -2433,15 +2433,15 @@ if(ctf->value) j = 0;
 					else if(!ctf->value && Route[i].ent->solid == SOLID_TRIGGER)
 					{
 						//Quad
-						if(j = mpindex[MPI_QUAD])
+						if((j = mpindex[MPI_QUAD]))
 							if(Route[i].ent->item == &itemlist[j])
 							{zc->havetarget = true;	break;}
 						//Quad fire
-						if(j = mpindex[MPI_QUADF])
+						if((j = mpindex[MPI_QUADF]))
 							if(Route[i].ent->item == &itemlist[j])
 							{zc->havetarget = true;	break;}
 						//Quad fire
-						if(j = mpindex[MPI_PENTA])
+						if((j = mpindex[MPI_PENTA]))
 							if(Route[i].ent->item == &itemlist[j])
 							{zc->havetarget = true;	break;}
 					}
@@ -3814,7 +3814,7 @@ gi.bprintf(PRINT_HIGH,"OFF 10\n");
 //						else if(zc->waterstate == WAS_IN) k = true;
 
 						if(ent->groundentity /*|| ent->waterlevel ) &&  
-							/*temppos[2] < 32 || zc->waterstate != WAS_IN)*/ || ent->waterlevel/*zc->waterstate*/ )
+							temppos[2] < 32 || zc->waterstate != WAS_IN)*/ || ent->waterlevel/*zc->waterstate*/ )
 						{
 							k = false;
 							yaw = temppos[2];
@@ -4881,7 +4881,7 @@ GOMOVE:
 			//right trace
 			yaw = zc->moveyaw + x;
 			if(yaw > 180) yaw -= 360;
-			if(j = Bot_moveT (ent,yaw,temppos,dist,&bottom))
+			if((j = Bot_moveT (ent,yaw,temppos,dist,&bottom)))
 			{
 				//special
 				if(x == 0 && /*bottom < 20 &&*/ !ent->waterlevel
@@ -4992,7 +4992,7 @@ GOMOVE:
 				else if(bottom <= f3 &&(bottom >= f1 || /*zc->waterstate*/ent->waterlevel /* 2*/)) 
 				{
 //					ent->client->anim_priority = ANIM_BASIC;
-					if(bottom < 0 && !zc->waterstate/*(ent->waterlevel && !zc->waterstate/*ent->waterlevel < 2)*/)
+					if(bottom < 0 && !zc->waterstate/*(ent->waterlevel && !zc->waterstate ent->waterlevel < 2)*/)
 					{
 						f2 = FRAMETIME * (ent->velocity[2] - ent->gravity * sv_gravity->value * FRAMETIME);
 						if(bottom >= f2 && ent->velocity[2] < 0/*20*/) temppos[2] += bottom;
@@ -5055,7 +5055,7 @@ GOMOVE:
 			//left trace
 			yaw = zc->moveyaw - x;
 			if(yaw < -180) yaw += 360;
-			if(j = Bot_moveT (ent,yaw,temppos,dist,&bottom))
+			if((j = Bot_moveT (ent,yaw,temppos,dist,&bottom)))
 			{
 				if(zc->waterstate == WAS_FLOAT) f2 = TOP_LIMIT_WATER;
 				else f2 = JumpMax;
@@ -5093,7 +5093,7 @@ GOMOVE:
 				else if(bottom <= f3 && (bottom >= f1 || ent->waterlevel /* 2zc->waterstate*/)) 
 				{
 					//ent->client->anim_priority = ANIM_BASIC;
-					if(bottom < 0 && !zc->waterstate/*(ent->waterlevel && !zc->waterstate/*ent->waterlevel < 2)*/)
+					if(bottom < 0 && !zc->waterstate/*(ent->waterlevel && !zc->waterstate ent->waterlevel < 2)*/)
 					{					
 //gi.bprintf(PRINT_HIGH,"ponko\n");
 						f2 = FRAMETIME * (ent->velocity[2] - ent->gravity * sv_gravity->value * FRAMETIME);

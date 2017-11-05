@@ -98,7 +98,7 @@ void Load_BotInfo()
 		while(1)
 		{
 			if(fgets( Buff, sizeof(Buff), fp ) == NULL) goto MESS_NOTFOUND;
-			if(!_strnicmp(MessageSection,Buff,strlen(MessageSection))) break;
+			if(!strncasecmp(MessageSection,Buff,strlen(MessageSection))) break;
 		}
 
 		while(1)
@@ -121,7 +121,7 @@ MESS_NOTFOUND:
 				MessageSection[0] = 0;
 				break;
 			}
-			if(!_strnicmp(MessageSection,Buff,strlen(MessageSection))) break;
+			if(!strncasecmp(MessageSection,Buff,strlen(MessageSection))) break;
 		}
 		//when not found
 		if(MessageSection[0] == 0)
@@ -131,7 +131,7 @@ MESS_NOTFOUND:
 			while(1)
 			{
 				if(fgets( Buff, sizeof(Buff), fp ) == NULL) goto BOTLIST_NOTFOUND;
-				if(!_strnicmp(MessageSection,Buff,strlen(MessageSection))) break;
+				if(!strncasecmp(MessageSection,Buff,strlen(MessageSection))) break;
 			}
 		}
 
@@ -336,7 +336,6 @@ void InitializeBot (edict_t *ent,int botindex )
 	gclient_t	*client;
 	char		pinfo[200];
 	int			index;
-	int			i;
 
 	index = ent-g_edicts-1;
 	ent->client = &game.clients[index];

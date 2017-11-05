@@ -2098,7 +2098,7 @@ void door_secret_done (edict_t *self)
 
 void door_secret_blocked  (edict_t *self, edict_t *other)
 {
-	if (!(other->svflags & SVF_MONSTER) && (!other->client) || !Q_stricmp(other->classname,"bodyque"))
+	if ((!(other->svflags & SVF_MONSTER) && (!other->client)) || !Q_stricmp(other->classname,"bodyque"))
 	{
 		// give it a chance to go away on it's own terms (like gibs)
 		T_Damage (other, self, self, vec3_origin, other->s.origin, vec3_origin, 100000, 1, 0, MOD_CRUSH);

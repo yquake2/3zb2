@@ -509,7 +509,7 @@ void	G_TouchTriggers (edict_t *ent)
 
 	// be careful, it is possible to have an entity in this
 	// list removed before we get to it (killtriggered)
-/*	for (i=0 ; i<num ; i++)
+	for (i=0 ; i<num ; i++)
 	{
 		hit = touch[i];
 		if (!hit->inuse)

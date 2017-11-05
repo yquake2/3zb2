@@ -705,7 +705,7 @@ void Weapon_Generic (edict_t *ent, int FRAME_ACTIVATE_LAST, int FRAME_FIRE_LAST,
 		fire_frames, fire);
 
 	// run the weapon frame again if hasted
-	if (stricmp(ent->client->pers.weapon->pickup_name, "Grapple") == 0 &&
+	if (Q_stricmp(ent->client->pers.weapon->pickup_name, "Grapple") == 0 &&
 		ent->client->weaponstate == WEAPON_FIRING)
 		return;
 
@@ -2140,7 +2140,6 @@ void weapon_phalanx_fire (edict_t *ent)
 	vec3_t		forward, right, up;
 	vec3_t		offset;
 	vec3_t		v;
-	int			kick = 12;
 	int			damage;
 	float		damage_radius;
 	int			radius_damage;
