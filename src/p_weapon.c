@@ -4,7 +4,7 @@
 #include "m_player.h"
 #include "bot.h"
 
-static qboolean	is_quad;
+qboolean	is_quad;
 // RAFAEL
 static qboolean is_quadfire;
 static byte		is_silenced;
