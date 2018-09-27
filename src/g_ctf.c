@@ -3010,8 +3010,8 @@ void CTFSetupNavSpawn()
 	memset(Route,0,sizeof(Route));
 	memset(code,0,8);
 
-	if(!ctf->value) sprintf(name,".\\%s\\chdtm\\%s.chn",gamepath->string,level.mapname);
-	else sprintf(name,".\\%s\\chctf\\%s.chf",gamepath->string,level.mapname);
+	if(!ctf->value) sprintf(name,"%s/chdtm/%s.chn",gamepath->string,level.mapname);
+	else sprintf(name,"%s/chctf/%s.chf",gamepath->string,level.mapname);
 
 	fpout = fopen(name,"rb");
 	if(fpout == NULL)
