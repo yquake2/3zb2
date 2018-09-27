@@ -142,7 +142,11 @@ MESS_NOTFOUND:
 			if(Buff[0] == '[') break;
 			if(Buff[0] == '\n' || Buff[0] == '#') {i--;continue;}
 			j = 2,k = 1;
-			if(!strncmp(Buff,"\\\\",2))
+			if(strncmp(Buff,"\\\\",2))
+			{
+				i--;
+			}
+			else
 			{
 				//netname
 				if(Get_YenPos(Buff,&k))
