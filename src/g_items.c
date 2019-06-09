@@ -1,6 +1,6 @@
-#include "g_local.h"
-#include "bot.h"
-#include "g_ctf.h"
+#include "header/local.h"
+#include "header/bot.h"
+#include "header/ctf.h"
 
 qboolean	Pickup_Weapon (edict_t *ent, edict_t *other);
 void		Use_Weapon (edict_t *ent, gitem_t *inv);

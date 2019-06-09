@@ -1,7 +1,7 @@
 // g_misc.c
 
-#include "g_local.h"
-#include "bot.h"
+#include "header/local.h"
+#include "header/bot.h"
 
 /*QUAKED func_group (0 0 0) ?
 Used to group brushes together just for editor convenience.

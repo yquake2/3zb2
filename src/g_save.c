@@ -1,6 +1,6 @@
 
-#include "g_local.h"
-#include "bot.h"
+#include "header/local.h"
+#include "header/bot.h"
 
 field_t fields[] = {
 	{"classname", FOFS(classname), F_LSTRING},

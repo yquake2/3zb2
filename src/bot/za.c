@@ -1,6 +1,6 @@
-#include "bot.h"
-#include "q_shared.h"
-#include "m_player.h"
+#include "../header/bot.h"
+#include "../header/shared.h"
+#include "../header/player.h"
 
 qboolean	pickup_pri;
 

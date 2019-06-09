@@ -22,9 +22,9 @@ string(REPLACE "-O3" "-O2" CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE}")
 add_definitions(-DOSTYPE="${CMAKE_SYSTEM_NAME}")
 
 # Architecture string
-string(REGEX REPLACE "amd64" "x86_64" ARCH ${CMAKE_SYSTEM_PROCESSOR})
-string(REGEX REPLACE "i.86" "i386" ARCH ${ARCH})
-string(REGEX REPLACE "^arm.*" "arm" ARCH ${ARCH})
+string(REGEX REPLACE "amd64" "x86_64" ARCH "${CMAKE_SYSTEM_PROCESSOR}")
+string(REGEX REPLACE "i.86" "i386" ARCH "${ARCH}")
+string(REGEX REPLACE "^arm.*" "arm" ARCH "${ARCH}")
 add_definitions(-DARCH="${ARCH}")
 
 # Linker Flags
@@ -35,10 +35,10 @@ else()
 endif()
 
 set(3zb2-Source
-	src/bot_fire.c
-	src/bot_func.c
-	src/bot_za.c
-	src/bot.c
+	src/bot/fire.c
+	src/bot/func.c
+	src/bot/za.c
+	src/bot/bot.c
 	src/g_chase.c
 	src/g_cmds.c
 	src/g_combat.c
@@ -57,25 +57,25 @@ set(3zb2-Source
 	src/g_turret.c
 	src/g_utils.c
 	src/g_weapon.c
-	src/m_move.c
-	src/p_client.c
-	src/p_hud.c
-	src/p_menu.c
-	src/p_trail.c
-	src/p_view.c
-	src/p_weapon.c
-	src/q_shared.c
+	src/monster/move.c
+	src/player/client.c
+	src/player/hud.c
+	src/player/menu.c
+	src/player/trail.c
+	src/player/view.c
+	src/player/weapon.c
+	src/shared/shared.c
 	)
 
 set(3zb2-Header
-	src/bot.h
-	src/botstr.h
-	src/g_ctf.h
-	src/g_local.h
-	src/game.h
-	src/m_player.h
-	src/p_menu.h
-	src/q_shared.h
+	src/header/bot.h
+	src/header/botstr.h
+	src/header/ctf.h
+	src/header/game.h
+	src/header/local.h
+	src/header/menu.h
+	src/header/player.h
+	src/header/shared.h
 	)
 
 # Build the 3zb2 dynamic library

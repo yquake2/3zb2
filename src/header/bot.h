@@ -1,6 +1,6 @@
 #ifndef BOTHEAD
 #define BOTHEAD
-#include "g_local.h"
+#include "../header/local.h"
 
 //general func
 void player_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int damage, vec3_t point);
