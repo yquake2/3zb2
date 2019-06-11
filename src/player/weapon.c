@@ -1,8 +1,8 @@
 // g_weapon.c
 
-#include "g_local.h"
-#include "m_player.h"
-#include "bot.h"
+#include "../header/local.h"
+#include "../header/player.h"
+#include "../header/bot.h"
 
 qboolean	is_quad;
 // RAFAEL

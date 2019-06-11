@@ -1,6 +1,6 @@
 // m_move.c -- monster movement
 
-#include "g_local.h"
+#include "../header/local.h"
 
 #define	STEPSIZE	18
 

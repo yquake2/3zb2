@@ -1,7 +1,7 @@
 
-#include "g_local.h"
-#include "m_player.h"
-#include "bot.h"
+#include "../header/local.h"
+#include "../header/player.h"
+#include "../header/bot.h"
 
 
 static	edict_t		*current_player;

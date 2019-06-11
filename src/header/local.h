@@ -1,6 +1,6 @@
 // g_local.h -- local definitions for game module
 
-#include "q_shared.h"
+#include "shared.h"
 
 #ifndef G_LOCAL
 #define G_LOCAL
@@ -12,7 +12,7 @@
 #include "game.h"
 
 //ZOID
-#include "p_menu.h"
+#include "menu.h"
 //ZOID
 
 // the "gameversion" client command will print this plus compile date
@@ -1252,6 +1252,6 @@ struct edict_s
 };
 
 //ZOID
-#include "g_ctf.h"
+#include "ctf.h"
 //ZOID
 #endif

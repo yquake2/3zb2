@@ -1,12 +1,12 @@
 # ----------------------------------------------------- #
-# Makefile for the 3zb2game module for Quake II         #
+# Makefile for the 3zb2 game module for Quake II       #
 #                                                       #
 # Just type "make" to compile the                       #
-#  - The Reckoning Game (game.so / game.dll)            #
+#  - 3rd. Zigock Bot Game (game.so)                         #
 #                                                       #
 # Dependencies:                                         #
 # - None, but you need a Quake II to play.              #
-#   While in theorie every one should work              #
+#   While in theorie every client should work           #
 #   Yamagi Quake II ist recommended.                    #
 #                                                       #
 # Platforms:                                            #
@@ -23,12 +23,12 @@ OSTYPE := Windows
 else
 OSTYPE := $(shell uname -s)
 endif
- 
+
 # Special case for MinGW
 ifneq (,$(findstring MINGW,$(OSTYPE)))
 OSTYPE := Windows
 endif
- 
+
 # Detect the architecture
 ifeq ($(OSTYPE), Windows)
 ifdef PROCESSOR_ARCHITEW6432
@@ -43,12 +43,23 @@ else
 ARCH := $(shell uname -m | sed -e 's/i.86/i386/' -e 's/amd64/x86_64/' -e 's/^arm.*/arm/')
 endif
 
+# Detect the compiler
+ifeq ($(shell $(CC) -v 2>&1 | grep -c "clang version"), 1)
+COMPILER := clang
+COMPILERVER := $(shell $(CC)  -dumpversion | sed -e 's/\.\([0-9][0-9]\)/\1/g' -e 's/\.\([0-9]\)/0\1/g' -e 's/^[0-9]\{3,4\}$$/&00/')
+else ifeq ($(shell $(CC) -v 2>&1 | grep -c -E "(gcc version|gcc-Version)"), 1)
+COMPILER := gcc
+COMPILERVER := $(shell $(CC)  -dumpversion | sed -e 's/\.\([0-9][0-9]\)/\1/g' -e 's/\.\([0-9]\)/0\1/g' -e 's/^[0-9]\{3,4\}$$/&00/')
+else
+COMPILER := unknown
+endif
+
 # ----------
 
-# Base CFLAGS.
+# Base CFLAGS. 
 #
 # -O2 are enough optimizations.
-#
+# 
 # -fno-strict-aliasing since the source doesn't comply
 #  with strict aliasing rules and it's next to impossible
 #  to get it there...
@@ -73,6 +84,22 @@ endif
 
 # ----------
 
+# Switch of some annoying warnings.
+ifeq ($(COMPILER), clang)
+	# -Wno-missing-braces because otherwise clang complains
+	#  about totally valid 'vec3_t bla = {0}' constructs.
+	CFLAGS += -Wno-missing-braces
+else ifeq ($(COMPILER), gcc)
+	# GCC 8.0 or higher.
+	ifeq ($(shell test $(COMPILERVER) -ge 80000; echo $$?),0)
+	    # -Wno-format-truncation and -Wno-format-overflow
+		# because GCC spams about 50 false positives.
+    	CFLAGS += -Wno-format-truncation -Wno-format-overflow
+	endif
+endif
+
+# ----------
+
 # Defines the operating system and architecture
 CFLAGS += -DOSTYPE=\"$(OSTYPE)\" -DARCH=\"$(ARCH)\"
 
@@ -80,11 +107,11 @@ CFLAGS += -DOSTYPE=\"$(OSTYPE)\" -DARCH=\"$(ARCH)\"
 
 # Base LDFLAGS.
 ifeq ($(OSTYPE), Darwin)
-LDFLAGS := -shared -arch i386 -arch x86_64
+LDFLAGS := -shared -arch i386 -arch x86_64 
 else ifeq ($(OSTYPE), Windows)
 LDFLAGS := -shared -static-libgcc
 else
-LDFLAGS := -shared
+LDFLAGS := -shared -lm
 endif
 
 # ----------
@@ -104,12 +131,12 @@ Q := @
 endif
 
 # ----------
-
+ 
 # Phony targets
 .PHONY : all clean 3zb2
 
 # ----------
-
+ 
 # Cleanup
 clean:
 	@echo "===> CLEAN"
@@ -122,33 +149,33 @@ ifeq ($(OSTYPE), Windows)
 3zb2:
 	@echo "===> Building game.dll"
 	${Q}mkdir -p release
-	${MAKE} release/game.dll
-
-build/%.o: %.c
-	@echo "===> CC $<"
-	${Q}mkdir -p $(@D)
-	${Q}$(CC) -c $(CFLAGS) -o $@ $<
+	$(MAKE) release/game.dll
+else ifeq ($(OSTYPE), Darwin)
+3zb2:
+	@echo "===> Building game.dylib"
+	${Q}mkdir -p release
+	$(MAKE) release/game.dylib
 else
 3zb2:
 	@echo "===> Building game.so"
 	${Q}mkdir -p release
 	$(MAKE) release/game.so
 
+release/game.so : CFLAGS += -fPIC
+endif
+
 build/%.o: %.c
 	@echo "===> CC $<"
 	${Q}mkdir -p $(@D)
 	${Q}$(CC) -c $(CFLAGS) -o $@ $<
 
-release/game.so : CFLAGS += -fPIC
-endif
-
 # ----------
 
 3ZB2_OBJS_ = \
-	src/bot.o \
-	src/bot_fire.o \
-	src/bot_func.o \
-	src/bot_za.o \
+	src/bot/bot.o \
+	src/bot/fire.o \
+	src/bot/func.o \
+	src/bot/za.o \
 	src/g_chase.o \
 	src/g_cmds.o \
 	src/g_combat.o \
@@ -166,14 +193,14 @@ endif
 	src/g_trigger.o \
 	src/g_utils.o \
 	src/g_weapon.o \
-	src/m_move.o \
-	src/p_client.o \
-	src/p_hud.o \
-	src/p_menu.o \
-	src/p_trail.o \
-	src/p_view.o \
-	src/p_weapon.o \
-	src/q_shared.o
+	src/monster/move.o \
+	src/player/client.o \
+	src/player/hud.o \
+	src/player/menu.o \
+	src/player/trail.o \
+	src/player/view.o \
+	src/player/weapon.o \
+	src/shared/shared.o
 
 # ----------
 

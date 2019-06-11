@@ -1,5 +1,5 @@
-#include "bot.h"
-#include "m_player.h"
+#include "../header/bot.h"
+#include "../header/player.h"
 
 
 qboolean Get_YenPos(char *Buff,int *curr)

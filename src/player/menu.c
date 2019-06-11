@@ -1,4 +1,4 @@
-#include "g_local.h"
+#include "../header/local.h"
 
 void PMenu_Open(edict_t *ent, pmenu_t *entries, int cur, int num)
 {

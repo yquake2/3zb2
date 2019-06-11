@@ -1,5 +1,5 @@
-#include "g_local.h"
-#include "bot.h"
+#include "header/local.h"
+#include "header/bot.h"
 
 void SpawnItem3 (edict_t *ent, gitem_t *item);
 /*

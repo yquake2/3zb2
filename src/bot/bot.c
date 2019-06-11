@@ -1,6 +1,6 @@
-#include "g_local.h"
-#include "m_player.h"
-#include "bot.h"
+#include "../header/local.h"
+#include "../header/player.h"
+#include "../header/bot.h"
 
 void droptofloor (edict_t *ent);
 
