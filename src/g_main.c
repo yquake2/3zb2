@@ -51,6 +51,8 @@ cvar_t	*bob_roll;
 
 cvar_t	*sv_cheats;
 
+cvar_t  *aimfix;
+
 //ponpoko
 cvar_t	*gamepath;
 cvar_t	*chedit;
