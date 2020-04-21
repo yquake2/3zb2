@@ -54,7 +54,6 @@ set(3zb2-Source
 	src/g_svcmds.c
 	src/g_target.c
 	src/g_trigger.c
-	src/g_turret.c
 	src/g_utils.c
 	src/g_weapon.c
 	src/monster/move.c
