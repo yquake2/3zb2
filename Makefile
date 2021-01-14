@@ -19,28 +19,36 @@
 
 # Detect the OS
 ifdef SystemRoot
-OSTYPE := Windows
+YQ2_OSTYPE := Windows
 else
-OSTYPE := $(shell uname -s)
+YQ2_OSTYPE := $(shell uname -s)
 endif
 
 # Special case for MinGW
-ifneq (,$(findstring MINGW,$(OSTYPE)))
-OSTYPE := Windows
+ifneq (,$(findstring MINGW,$(YQ2_OSTYPE)))
+YQ2_OSTYPE := Windows
 endif
 
 # Detect the architecture
-ifeq ($(OSTYPE), Windows)
+ifeq ($(YQ2_OSTYPE), Windows)
+ifdef MINGW_CHOST
+ifeq ($(MINGW_CHOST), x86_64-w64-mingw32)
+YQ2_ARCH ?= x86_64
+else # i686-w64-mingw32
+YQ2_ARCH ?= i386
+endif
+else # windows, but MINGW_CHOST not defined
 ifdef PROCESSOR_ARCHITEW6432
 # 64 bit Windows
-ARCH := $(PROCESSOR_ARCHITEW6432)
+YQ2_ARCH ?= $(PROCESSOR_ARCHITEW6432)
 else
 # 32 bit Windows
-ARCH := $(PROCESSOR_ARCHITECTURE)
+YQ2_ARCH ?= $(PROCESSOR_ARCHITECTURE)
 endif
+endif # windows but MINGW_CHOST not defined
 else
-# Normalize some abiguous ARCH strings
-ARCH := $(shell uname -m | sed -e 's/i.86/i386/' -e 's/amd64/x86_64/' -e 's/^arm.*/arm/')
+# Normalize some abiguous YQ2_ARCH strings
+YQ2_ARCH ?= $(shell uname -m | sed -e 's/i.86/i386/' -e 's/amd64/x86_64/' -e 's/^arm.*/arm/')
 endif
 
 # Detect the compiler
@@ -74,7 +82,7 @@ endif
 # -fPIC for position independend code.
 #
 # -MMD to generate header dependencies.
-ifeq ($(OSTYPE), Darwin)
+ifeq ($(YQ2_OSTYPE), Darwin)
 CFLAGS := -O2 -fno-strict-aliasing -fomit-frame-pointer \
 		  -Wall -pipe -g -fwrapv -arch i386 -arch x86_64
 else
@@ -100,15 +108,25 @@ endif
 
 # ----------
 
+# Using the default x87 float math on 32bit x86 causes rounding trouble
+# -ffloat-store could work around that, but the better solution is to
+# just enforce SSE - every x86 CPU since Pentium3 supports that
+# and this should even improve the performance on old CPUs
+ifeq ($(YQ2_ARCH), i386)
+override CFLAGS += -msse -mfpmath=sse
+endif
+
+# ----------
+
 # Defines the operating system and architecture
-CFLAGS += -DOSTYPE=\"$(OSTYPE)\" -DARCH=\"$(ARCH)\"
+CFLAGS += -DOSTYPE=\"$(YQ2_OSTYPE)\" -DARCH=\"$(YQ2_ARCH)\"
 
 # ----------
 
 # Base LDFLAGS.
-ifeq ($(OSTYPE), Darwin)
+ifeq ($(YQ2_OSTYPE), Darwin)
 LDFLAGS := -shared -arch i386 -arch x86_64 
-else ifeq ($(OSTYPE), Windows)
+else ifeq ($(YQ2_OSTYPE), Windows)
 LDFLAGS := -shared -static-libgcc
 else
 LDFLAGS := -shared -lm
@@ -145,12 +163,12 @@ clean:
 # ----------
 
 # The 3zb2 game
-ifeq ($(OSTYPE), Windows)
+ifeq ($(YQ2_OSTYPE), Windows)
 3zb2:
 	@echo "===> Building game.dll"
 	${Q}mkdir -p release
 	$(MAKE) release/game.dll
-else ifeq ($(OSTYPE), Darwin)
+else ifeq ($(YQ2_OSTYPE), Darwin)
 3zb2:
 	@echo "===> Building game.dylib"
 	${Q}mkdir -p release
@@ -219,11 +237,11 @@ build/%.o: %.c
 
 # ----------
 
-ifeq ($(OSTYPE), Windows)
+ifeq ($(YQ2_OSTYPE), Windows)
 release/game.dll : $(3ZB2_OBJS)
 	@echo "===> LD $@"
 	${Q}$(CC) $(LDFLAGS) -o $@ $(3ZB2_OBJS)
-else ifeq ($(OSTYPE), Darwin)
+else ifeq ($(YQ2_OSTYPE), Darwin)
 release/game.dylib : $(3ZB2_OBJS)
 	@echo "===> LD $@"
 	${Q}$(CC) $(LDFLAGS) -o $@ $(3ZB2_OBJS)
