@@ -1205,7 +1205,7 @@ int Bot_Watermove ( edict_t *ent,vec3_t pos,float dist,float upd)
 	vec3_t		trmin,trmax,touchmin;
 	float		i,j;
 
-	float		max,vec;
+	float		vec;
 
 	VectorCopy(ent->s.origin,trmax);
 
@@ -1230,7 +1230,6 @@ int Bot_Watermove ( edict_t *ent,vec3_t pos,float dist,float upd)
 	trmin[2] += upd;
 	
 	vec = -1;
-	max = 0;
 	for(i = 0;i < 360; i += 10)
 	{
 		if(i && upd > -13 && upd < 0/*13*/) break;
@@ -1862,13 +1861,11 @@ JMPCHK:
 
 qboolean TargetJump(edict_t *ent,vec3_t tpos)
 {
-	zgcl_t	*zc;
 	float	x,l,grav,vel,ypos,yori;
 	vec3_t	v,vv;
 	int		mf = false;
 
-	zc = &ent->client->zc;
-	grav = ent->gravity * sv_gravity->value * FRAMETIME; 
+	grav = ent->gravity * sv_gravity->value * FRAMETIME;
 
 	vel = ent->velocity[2] + VEL_BOT_JUMP;
 	yori = ent->s.origin[2];
@@ -1929,14 +1926,12 @@ qboolean TargetJump(edict_t *ent,vec3_t tpos)
 
 qboolean TargetJump_Turbo(edict_t *ent,vec3_t tpos)
 {
-	zgcl_t	*zc;
 	float	x,l,grav,vel,ypos,yori;
 	vec3_t	v,vv;
 	int		mf = false;
 	float	jvel;
 
-	zc = &ent->client->zc;
-	grav = ent->gravity * sv_gravity->value * FRAMETIME; 
+	grav = ent->gravity * sv_gravity->value * FRAMETIME;
 
 	vel = ent->velocity[2] + VEL_BOT_JUMP;
 
@@ -2005,13 +2000,11 @@ qboolean TargetJump_Turbo(edict_t *ent,vec3_t tpos)
 }
 qboolean TargetJump_Chk(edict_t *ent,vec3_t tpos,float defvel)
 {
-	zgcl_t	*zc;
 	float	x,l,grav,vel,ypos,yori;
 	vec3_t	v,vv;
 	int		mf = false;
 
-	zc = &ent->client->zc;
-	grav = ent->gravity * sv_gravity->value * FRAMETIME; 
+	grav = ent->gravity * sv_gravity->value * FRAMETIME;
 
 	vel = defvel + VEL_BOT_JUMP;
 	yori = ent->s.origin[2];
@@ -2299,7 +2292,7 @@ void Bots_Move_NORM (edict_t *ent)
 	edict_t		*it_ent;
 	gitem_t		*it;
 
-	edict_t		*front,*left,*right,*e;
+	edict_t		*e;
 
 	char		*string;
 
@@ -5639,7 +5632,6 @@ GOMOVE:
 VCHCANSEL:
 	//--------------------------------------------------------------------------------------
 	//ladder check
-	front = NULL, left = NULL, right = NULL;
 	k = false;
 	if(zc->route_trace && (zc->routeindex + 1) < CurrentIndex)
 	{
@@ -5667,7 +5659,6 @@ VCHCANSEL:
 
 		VectorAdd(ent->s.origin,touchmin,touchmax);
 		rs_trace = gi.trace (ent->s.origin, trmin,ent->maxs, touchmax,ent, MASK_BOTSOLID );
-		front = rs_trace.ent;
 
 		if(rs_trace.contents & CONTENTS_LADDER) tempflag = true;
 
@@ -5698,7 +5689,6 @@ VCHCANSEL:
 
 			VectorAdd(ent->s.origin,touchmin,touchmax);
 			rs_trace = gi.trace (ent->s.origin, trmin,ent->maxs, touchmax,ent,  MASK_BOTSOLID );
-			right = rs_trace.ent;
 
 			if(rs_trace.contents & CONTENTS_LADDER) tempflag = true;
 		}
@@ -5714,7 +5704,6 @@ VCHCANSEL:
 
 			VectorAdd(ent->s.origin,touchmin,touchmax);
 			rs_trace = gi.trace (ent->s.origin, trmin,ent->maxs, touchmax,ent, MASK_BOTSOLID );
-			left = rs_trace.ent;
 
 			if(rs_trace.contents & CONTENTS_LADDER)	tempflag = true;
 		}
