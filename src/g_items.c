@@ -1197,7 +1197,7 @@ droptofloor
 void droptofloor (edict_t *ent)
 {
 	vec3_t  trmin,trmax,min,mins,maxs;
-	float	i,j,k,yaw;
+	float	i,j,yaw;
 
 	gitem_t		*it;		//j
 	edict_t		*it_ent;	//j	
@@ -1282,7 +1282,6 @@ void droptofloor (edict_t *ent)
 
 	if(ent->classname[0] == 'w' || ent->classname[0] == 'i' || ent->classname[0] == 'a')
 	{
-		k = 0;
 		VectorCopy(ent->s.origin,min);
 		VectorSet (mins, -16, -16, -16);
 		VectorSet (maxs, 16, 16, 16);
@@ -1318,7 +1317,6 @@ void droptofloor (edict_t *ent)
 						trx = gi.trace (trmax, mins, maxs, trmin,ent, CONTENTS_WATER );
 						VectorCopy(trx.endpos,it_ent->s.origin);
 						SpawnItem3 (it_ent, it);
-						k = -1;
 					}
 					if(tr.endpos[2] < ent->s.origin[2] - 16 
 						&& tr.endpos[2] > min[2] && !tr.allsolid && !tr.startsolid)
