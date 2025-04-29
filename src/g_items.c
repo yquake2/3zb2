@@ -1617,7 +1617,7 @@ void ZIGFlagThink(edict_t *ent)
 	ent->nextthink = level.time + FRAMETIME;
 }
 
-qboolean ZIGDrop_Flag(edict_t *ent, gitem_t *item)
+qboolean ZIGDropped_Flag(edict_t *ent, gitem_t *item)
 {
 	edict_t *tech;
 

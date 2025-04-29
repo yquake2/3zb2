@@ -3019,8 +3019,9 @@ void CTFSetupNavSpawn()
 	{
 		fread(code,sizeof(char),8,fpout);
 
-		if(!ctf->value) strncpy(SRCcode,"3ZBRGDTM",8);
-		else strncpy(SRCcode,"3ZBRGCTF",8);
+		// Don't use strcpy: SRCcode is not a string
+		if(!ctf->value) memcpy(SRCcode,"3ZBRGDTM",8);
+		else memcpy(SRCcode,"3ZBRGCTF",8);
 
 		if(strncmp(code,SRCcode,8))
 		{
