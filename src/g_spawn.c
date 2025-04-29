@@ -794,7 +794,7 @@ void G_FindRouteLink(edict_t *ent)
 	{
 		SelectSpawnPoint (ent, v, vv);
 	//	VectorCopy (v, ent->s.origin);
-		if(ZIGDropped_Flag(ent,zflag_item))
+		if(ZIGDrop_Flag(ent,zflag_item))
 		{
 			VectorCopy (v, zflag_ent->s.origin);
 		}

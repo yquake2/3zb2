@@ -77,8 +77,8 @@ void UsePrimaryWeapon(edict_t *ent);
 void UpdateExplIndex(edict_t* ent);
 
 //flag
-void ZIGDrop_Flag(edict_t *ent, gitem_t *item);
-qboolean ZIGDropped_Flag(edict_t *ent, gitem_t *item);
+qboolean ZIGDrop_Flag(edict_t *ent, gitem_t *item);
+void ZIGDrop_Flag_v(edict_t *ent, gitem_t *item);
 
 //p_view.c
 void BotEndServerFrame (edict_t *ent);

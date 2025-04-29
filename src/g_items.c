@@ -1617,7 +1617,7 @@ void ZIGFlagThink(edict_t *ent)
 	ent->nextthink = level.time + FRAMETIME;
 }
 
-qboolean ZIGDropped_Flag(edict_t *ent, gitem_t *item)
+qboolean ZIGDrop_Flag(edict_t *ent, gitem_t *item)
 {
 	edict_t *tech;
 
@@ -1631,6 +1631,13 @@ qboolean ZIGDropped_Flag(edict_t *ent, gitem_t *item)
 	zflag_ent = tech;
 	tech->inuse = true;
 	return true;
+}
+
+// void return of ZIGDrop_Flag
+// to prevent -Wincompatible-pointer-types warning
+void ZIGDrop_Flag_v(edict_t *ent, gitem_t *item)
+{
+    ZIGDrop_Flag(ent, item);
 }
 
 qboolean ZIGPickup_Flag (edict_t *ent, edict_t *other)
@@ -3040,7 +3047,7 @@ tank commander's head
 		"item_flag_zig",
 		ZIGPickup_Flag,
 		NULL,
-		ZIGDrop_Flag, //Should this be null if we don't want players to drop it manually?
+		ZIGDrop_Flag_v, //Should this be null if we don't want players to drop it manually?
 		NULL,
 		"3zb/emgcall.wav",
 		"models/zflag.md2", EF_FLAG2,
