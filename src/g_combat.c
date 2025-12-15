@@ -160,6 +160,8 @@ static int CheckPowerArmor (edict_t *ent, vec3_t point, vec3_t normal, int damag
 	int			power;
 	int			power_used;
 
+	index = 0;
+
 	if (!damage)
 		return 0;
 

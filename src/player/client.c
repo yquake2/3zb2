@@ -1776,7 +1776,7 @@ void ChainPodThink (edict_t *ent)
 	ent->nextthink = level.time + FRAMETIME * 10;
 }
 qboolean Bot_traceX (edict_t *ent,edict_t *other);
-qboolean ChkTFlg();
+qboolean ChkTFlg(void);
 
 
 qboolean TraceX (edict_t *ent,vec3_t p2)

@@ -200,7 +200,7 @@ GetNextMap
 get next map's file name
 =================
 */
-void Get_NextMap()
+void Get_NextMap(void)
 {
 	FILE	*fp;
 	qboolean	firstflag = false;
