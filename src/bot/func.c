@@ -98,7 +98,7 @@ void Load_BotInfo()
 		while(1)
 		{
 			if(fgets( Buff, sizeof(Buff), fp ) == NULL) goto MESS_NOTFOUND;
-			if(!strncasecmp(MessageSection,Buff,strlen(MessageSection))) break;
+			if(!Q_strncasecmp(MessageSection,Buff,strlen(MessageSection))) break;
 		}
 
 		while(1)
@@ -121,7 +121,7 @@ MESS_NOTFOUND:
 				MessageSection[0] = 0;
 				break;
 			}
-			if(!strncasecmp(MessageSection,Buff,strlen(MessageSection))) break;
+			if(!Q_strncasecmp(MessageSection,Buff,strlen(MessageSection))) break;
 		}
 		//when not found
 		if(MessageSection[0] == 0)
@@ -131,7 +131,7 @@ MESS_NOTFOUND:
 			while(1)
 			{
 				if(fgets( Buff, sizeof(Buff), fp ) == NULL) goto BOTLIST_NOTFOUND;
-				if(!strncasecmp(MessageSection,Buff,strlen(MessageSection))) break;
+				if(!Q_strncasecmp(MessageSection,Buff,strlen(MessageSection))) break;
 			}
 		}
 
