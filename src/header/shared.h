@@ -22,6 +22,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdbool.h>
 
 #if defined _M_IX86 && !defined C_ONLY
 #define id386	1
@@ -36,7 +37,7 @@
 #endif
 
 typedef unsigned char 		byte;
-typedef enum {false, true}	qboolean;
+typedef int qboolean;
 
 
 #ifndef NULL

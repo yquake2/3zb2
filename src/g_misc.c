@@ -935,6 +935,9 @@ void barrel_touch (edict_t *self, edict_t *other, cplane_t *plane, csurface_t *s
 		return;
 
 	VectorSubtract (self->s.origin, other->s.origin, v);
+
+	// Not doing anything with 'v': below statement prevents Wunused-but-set-variable warning
+	(void) v;
 }
 
 void barrel_explode (edict_t *self)
