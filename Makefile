@@ -84,7 +84,7 @@ endif
 # -MMD to generate header dependencies.
 ifeq ($(YQ2_OSTYPE), Darwin)
 CFLAGS := -O2 -fno-strict-aliasing -fomit-frame-pointer \
-		  -Wall -pipe -g -fwrapv -arch i386 -arch x86_64
+		  -Wall -pipe -g -fwrapv -arch arm64 -arch x86_64
 else
 CFLAGS := -O2 -fno-strict-aliasing -fomit-frame-pointer \
 		  -Wall -pipe -g -MMD -fwrapv
@@ -125,7 +125,7 @@ CFLAGS += -DOSTYPE=\"$(YQ2_OSTYPE)\" -DARCH=\"$(YQ2_ARCH)\"
 
 # Base LDFLAGS.
 ifeq ($(YQ2_OSTYPE), Darwin)
-LDFLAGS := -shared -arch i386 -arch x86_64 
+LDFLAGS := -shared -arch arm64 -arch x86_64 
 else ifeq ($(YQ2_OSTYPE), Windows)
 LDFLAGS := -shared -static-libgcc
 else
