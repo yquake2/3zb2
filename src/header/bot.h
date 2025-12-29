@@ -7,11 +7,11 @@ void player_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int damag
 
 //bot spawn & remove
 qboolean	SpawnBot(int i);
-void		Bot_LevelChange();
-void		Load_BotInfo();
-void		Bot_SpawnCall();
-void		RemoveBot();
-void		SpawnBotReserving();
+void		Bot_LevelChange(void);
+void		Load_BotInfo(void);
+void		Bot_SpawnCall(void);
+void		RemoveBot(void);
+void		SpawnBotReserving(void);
 
 //weapon
 void Weapon_Blaster (edict_t *ent);
@@ -54,7 +54,7 @@ void CopyToBodyQue (edict_t *ent);
 
 //route util
 qboolean TraceX (edict_t *ent,vec3_t p2);
-void Move_LastRouteIndex();
+void Move_LastRouteIndex(void);
 void Get_RouteOrigin(int index,vec3_t pos);
 
 //Bot Func
@@ -89,7 +89,7 @@ void Bots_Move_NORM (edict_t *ent);		//normal AI
 //spawn
 void SetBotFlag1(edict_t *ent);	//チーム1の旗
 void SetBotFlag2(edict_t *ent);  //チーム2の旗
-void CTFSetupNavSpawn();	//ナビの設置
+void CTFSetupNavSpawn(void);	//ナビの設置
 
 //ctf
 void CTFJobAssign (void);		//job assign

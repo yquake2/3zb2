@@ -575,7 +575,7 @@ Chain together all entities with a matching team field.
 All but the last will have the teamchain field set to the next one
 ================
 */
-void G_FindTrainTeam()
+void G_FindTrainTeam(void)
 {
 	edict_t	*teamlist[MAX_EDICTS + 1];	
 	edict_t	*e,*t,*p;
@@ -679,7 +679,7 @@ G_FindItemLink
 */
 
 
-void G_FindItemLink()
+void G_FindItemLink(void)
 { 
 	int i,j,k;
 
@@ -906,7 +906,7 @@ gi.dprintf("Total %i linking done.\n",total);
 G_SpawnRouteLink
 ================
 */
-void G_SpawnRouteLink()
+void G_SpawnRouteLink(void)
 {
 	edict_t *e;
 
@@ -1247,10 +1247,14 @@ void SP_worldspawn (edict_t *ent)
 	if (ent->message && ent->message[0])
 	{
 		gi.configstring (CS_NAME, ent->message);
-		strncpy (level.level_name, ent->message, sizeof(level.level_name));
+		strncpy (level.level_name, ent->message, sizeof(level.level_name)-1);
+		level.level_name[sizeof(level.level_name)-1] = '\0';
 	}
 	else
-		strncpy (level.level_name, level.mapname, sizeof(level.level_name));
+	{
+		strncpy (level.level_name, level.mapname, sizeof(level.level_name)-1);
+		level.level_name[sizeof(level.level_name)-1] = '\0';
+	}
 
 	if (st.sky && st.sky[0])
 		gi.configstring (CS_SKY, st.sky);

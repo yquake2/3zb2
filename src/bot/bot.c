@@ -15,11 +15,11 @@ void SetBotFlag2(edict_t *ent)  //チーム2の旗
 {
 	bot_team_flag2 = ent;
 }
-edict_t *GetBotFlag1()	//チーム1の旗
+edict_t *GetBotFlag1(void)	//チーム1の旗
 {
 	return bot_team_flag1;
 }
-edict_t *GetBotFlag2()  //チーム2の旗
+edict_t *GetBotFlag2(void)  //チーム2の旗
 {
 	return bot_team_flag2;
 }
