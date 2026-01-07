@@ -248,39 +248,38 @@ void SVCmd_WriteIP_f (void)
 	fclose (f);
 }
 
-
-
-
-
 //ルート修正
 //ノーマルポッドは全て切り捨て
 void Move_LastRouteIndex(void)
 {
 	int	i;
 
-	for(i = CurrentIndex - 1 ; i >= 0;i--)
+	for (i = CurrentIndex - 1; i >= 0; i--)
 	{
-		if(Route[i].state)
-		    break;
-		else if(!Route[i].index)
-		    break;
+		if (Route[i].state)
+			break;
+		else if (!Route[i].index)
+			break;
 	}
-	if(!CurrentIndex || !Route[i].index)
-	    CurrentIndex = i;
-	else
-	    CurrentIndex = i + 1;
 
-	if(CurrentIndex < MAXNODES)
+	// limit index range fixes memset offset out of bounds warning
+	if (i < 0 || i >= MAXNODES)
+		return;
+
+	if (!CurrentIndex || !Route[i].index)
+		CurrentIndex = i;
+	else
+		CurrentIndex = i + 1;
+
+	if (CurrentIndex < MAXNODES)
 	{
-		//TODO: fix warning
-		// warning: ‘memset’ offset [-85899345920, -40] is out of the bounds [0, 400000] of object ‘Route’ with type ‘route_t[10000]’ [-Warray-bounds=]
-		memset(&Route[CurrentIndex],0,sizeof(route_t));
-		if(CurrentIndex > 0)
-		    Route[CurrentIndex].index = Route[CurrentIndex - 1].index + 1; 
+		memset(&Route[CurrentIndex], 0, sizeof(route_t));
+		if (CurrentIndex > 0)
+			Route[CurrentIndex].index = Route[CurrentIndex - 1].index + 1; 
 	}
 }
 
-void	Svcmd_Test_f (void)
+void Svcmd_Test_f (void)
 {
 	gi.cprintf (NULL, PRINT_HIGH, "Svcmd_Test_f()\n");
 }
