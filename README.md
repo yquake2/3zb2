@@ -7,8 +7,12 @@ of Yamagi Quake IIs enhanced, unix compatible VFS.
 
 ## Installation
 
-* Extract the ZIP archive *misc/assets.zip* to your Quake II directory.
+* Copy *misc/pak10.pak* to the 3zb2/ dir.
 * Build the game.so by calling `make` and copy it to the 3zb2/ dir.
 
-For more informations refer to the user guide, included with the assets.
+## Run the game
+* Example command: ./quake2 +set game 3zb2 +map q2dm1
+* Open the console (the ~ key) and type: sv spb x. Where x is the number of bots you want to spawn.
+
+For more informations refer to the user guide in *misc/User Guide*.
 
